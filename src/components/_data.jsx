@@ -42,14 +42,16 @@ export const _socials = [
 ];
 
 export const _pages = [
-    { name: "Home", href: "/" },
-    { name: "Ceramic Coating", href: "/ceramic-coating" },
-    { name: "PPF", href: "/paint-protection-film" },
-    { name: "Complete Detailing", href: "/complete-detailing" },
-    { name: "Interior Detailing", href: "/interior-detailing" },
-    { name: "Exterior Detailing", href: "/exterior-detailing" },
-    { name: "Paint Correction", href: "/paint-correction" },
-    { name: "About Us", href: "/about-us" },
-    { name: "Contact", href: "/contact" },
+    { name: "Home", url: "/" },
+    { name: "Ceramic Coating", url: "/ceramic-coating" },
+    { name: "PPF", url: "/paint-protection-film" },
+    { name: "Detailing", url: "", subPages: [
+        { name: "Complete Detailing", url: "/complete-detailing" },
+        { name: "Interior Detailing", url: "/interior-detailing" },
+        { name: "Exterior Detailing", url: "/exterior-detailing" },
+        { name: "Paint Correction", url: "/paint-correction" }
+    ]},
+    { name: "About Us", url: "/about-us" },
+    { name: "Contact", url: "/contact" },
 
 ];
