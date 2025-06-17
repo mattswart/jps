@@ -9,7 +9,7 @@ export default function Header ({ socials, pages, _meta }){
   const handleClick = () => setIsVisible(!isVisible);
     return (
       <header className={ isVisible ? "show" : undefined }>  
-        <div className="wrapper">
+        <div className="layout">
           <div className="logos">
             <Link href="/" className="logo-icon">
               <Image 

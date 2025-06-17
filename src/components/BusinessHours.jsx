@@ -2,7 +2,7 @@
 export default function BusinessHours ({ hours }) {
     return (
         !!hours?.length && (
-            <ul className="hours">
+            <ol className="hours">
                 { hours.map(( day, index ) => (
                     day.isOpen ? (
                         <li key={index}><span>{ day.day } </span>{ day.timeOpen } - { day.timeClose }</li>
@@ -10,7 +10,7 @@ export default function BusinessHours ({ hours }) {
                         <li key={index} className="closed"><span>{ day.day } </span>Closed</li>
                     )
                 ))}
-            </ul>
+            </ol>
         )
     )
 }
