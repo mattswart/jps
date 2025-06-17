@@ -1,19 +1,35 @@
 import Socials from "@/components/Socials";
 import Nav from "@/components/Nav"
+import Image from "next/image"
+import Link from "next/link"
 
 export default function Header ({ socials, pages, _meta }){
     return (
-      <header>
-        <div className="logos">
-          <div className="logo-icon">
-            
+      <header className="show">  
+        <div className="wrapper">
+          <div className="logos">
+            <Link href="/" className="logo-icon">
+              <Image 
+                src="/logo-icon.svg"
+                width={100}
+                height={100}
+                alt="Business logo"
+              />
+            </Link>
+            <Link href="/" className="logo-text">
+              <Image 
+                src="/logo-text.svg"
+                width={100}
+                height={100}
+                alt="JP'S Fine Auto Detailing"
+              />
+            </Link>
           </div>
-          <div className="logo-text">
-            
-          </div>
+          <button className="menu-toggle" title="Open main menu" >| | |</button>
+        
+          <Nav pages={ pages } showHome={ false } />
+          <Socials socials={socials} hasLabel={false} hasUsername={false} />
         </div>
-        <Nav pages={ pages } />
-        <Socials socials={socials} hasLabel={true} hasUsername={false} />
       </header>  
     )
 }

@@ -1,7 +1,7 @@
 export const _meta = [
     {
-        businessName: "",
-        phoneNumber: "",
+        businessName: "JP'S Fine Auto Detailing",
+        phoneNumber: "204-222-2222",
         logo: "",
         logoAlt: "",
         logoAltText: "",

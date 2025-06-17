@@ -7,7 +7,15 @@ export default function Socials({ socials, hasLabel, hasUsername }) {
                 socials.map(( social, index ) => (
                     <div key={ index }>
                         <a href={ social.url } target="_blank">
-                            { social.icon && ( <Image src={social.icon} alt={social.iconAltText} width={15} height={15} /> )}
+                            { social.icon && ( 
+                                <Image 
+                                    src={social.icon} 
+                                    alt={social.iconAltText} 
+                                    width={18} 
+                                    height={18} 
+                                    style={ hasLabel && { verticalAlign:"middle", paddingRight: "5px" }}
+                                /> 
+                            )}
                             { hasLabel && ( <span className="label">{ social.name }</span> )}
                             { hasUsername && ( <span className="username">{ social.username }</span> )}
                         </a>

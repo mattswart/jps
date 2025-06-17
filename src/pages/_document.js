@@ -11,7 +11,7 @@ export default function Document() {
         <Header socials={_socials} pages={_pages} meta={_meta} />
         <Main />
         <NextScript />
-        <Footer />
+        <Footer socials={_socials} pages={_pages} meta={_meta[0]}/>
       </body>
     </Html>
   );
