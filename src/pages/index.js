@@ -1,8 +1,15 @@
 import Head from "next/head";
 import Image from "next/image";
 import { Geist, Geist_Mono } from "next/font/google";
+import { Poppins } from "next/font/google"
 import styles from "@/styles/Home.module.css";
 import { _socials } from "@/components/_data";
+
+const poppins = Poppins({
+  variable: "--font-poppins",
+  subsets: ["latin"],
+  weight: ['100', '200', '300', '400', '500', '600', '700', '800', '900']
+});
 
 const geistSans = Geist({
   variable: "--font-geist-sans",

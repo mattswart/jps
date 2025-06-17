@@ -9,11 +9,11 @@ export default function Nav ({ pages, showHome }){
                         page.url == "/" && showHome == false ?
                             false
                         : (
-                            <li key={ index }>
+                            <li key={ index } className={ !!page.subPages?.length && "has-subpages" }>
                                 { !!page.url?.length && (
-                                        <Link href={ page.url }>{ page.name }</Link>
+                                    <Link href={ page.url }>{ page.name }</Link>
                                 ) || (
-                                    page.name
+                                    <a>{page.name}</a>
                                 )}
                                 { !!page.subPages?.length && (
                                     <ol>

@@ -1,11 +1,14 @@
+import  { useState } from "react";
 import Socials from "@/components/Socials";
 import Nav from "@/components/Nav"
 import Image from "next/image"
 import Link from "next/link"
 
 export default function Header ({ socials, pages, _meta }){
+  const [isVisible, setIsVisible] = useState(false);
+  const handleClick = () => setIsVisible(!isVisible);
     return (
-      <header className="show">  
+      <header className={ isVisible ? "show" : undefined }>  
         <div className="wrapper">
           <div className="logos">
             <Link href="/" className="logo-icon">
@@ -25,7 +28,7 @@ export default function Header ({ socials, pages, _meta }){
               />
             </Link>
           </div>
-          <button className="menu-toggle" title="Open main menu" >| | |</button>
+          <button className="menu-toggle" title="Open main menu" onClick={handleClick} >| | |</button>
         
           <Nav pages={ pages } showHome={ false } />
           <Socials socials={socials} hasLabel={false} hasUsername={false} />
