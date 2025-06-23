@@ -2,11 +2,15 @@
 :root {
   // --background: #ffffff;
   // --foreground: #171717;
-  --header-nav-background-color: black;
-  --header-nav-text-color: white;
-  --header-logo-color: black;
-  --header-socials-color: black;
+  --color-header-nav-background: black;
+  --color-header-nav-text: white;
+  --color-header-logo: black;
+  --color-header-socials: black;
   --content-max-width: 1200px;
+  --spacing-content-x: ;
+  --spacing-content-y: ;
+  --spacing-layout-x: 16px;
+  --spacing-layout-y: 8px;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -40,10 +44,12 @@
 .poppins-extrabold-italic { font-family: "Poppins", sans-serif; font-weight: 800; font-style: italic; }
 .poppins-black-italic { font-family: "Poppins", sans-serif; font-weight: 900; font-style: italic; }
 
+.uppercase { text-transform: uppercase; }
 // RESET
 body {
   // color: var(--foreground);
   // background: var(--background);
+  font-family: "Poppins", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -52,8 +58,11 @@ html, body { max-width: 100vw; overflow-x: hidden; }
 ul, ol { list-style-type: none; }
 a { color: inherit; text-decoration: none; }
 // END RESET
-
-.socials{                   // ----- Socials Component -----
+// BASE STYLING
+h1{ font-weight: 900; font-style: italic; }
+// END BASE STYLING
+// ----- Socials Component -----
+.socials{                   
   display: flex;  
   flex-direction: row;
   gap: 12px;
@@ -69,12 +78,10 @@ a { color: inherit; text-decoration: none; }
 header {
   .socials{ display: none; }
   &.show .socials { display: flex; }
-}                         // ----- ----- END Socials Component
-
-nav{                      // ----- Nav Component -----
-  font-family: "Poppins", sans-serif;
-  font-weight: 900;
-  font-style: italic;
+}                         
+// --- //
+// --- Nav Component --- //
+nav{  
   text-transform: uppercase;
   display: flex;
   flex-direction: column;
@@ -92,9 +99,15 @@ nav{                      // ----- Nav Component -----
 header{
   nav {display: none;}
   &.show nav {display: flex;}
-}                         // ----- ----- END Nav Component
-
-ol.hours {                // ----- BusinessHours Component -----
+}     
+  // --- //
+// -- BusinessPhoneNumber -- //
+.phone {
+  
+}
+// --- //
+// -- BusinessHours -- //
+ol.hours { 
   display: flex;
   flex-direction: column;
   width: fit-content;
@@ -104,19 +117,38 @@ ol.hours {                // ----- BusinessHours Component -----
     justify-content: space-between;
     gap: 20px;
   }
-
-}                         // ----- ----- END BusinessHours Component
-
-
+}
+// --- //
+// -- Footer -- //
 footer{
+  padding: var(--spacing-layout-y) var(--spacing-layout-x);
   .layout{
     display: flex;
     flex-direction: column;
+    align-items: center;
+    .business-info {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      h4.name{ text-align: center; }
+    }
+    .logo-socials{
+      display: flex;
+      flex-direction: column-reverse;
+      align-items: center;
+      a.logo-icon{
+        img{
+          width: 35vw;
+          height: auto;
+        }
+      }
+    }
   }
 }
-
+// --- //
+// -- Header -- //
 header{
-  padding: 8px 16px;
+  padding: var(--spacing-layout-y) var(--spacing-layout-x);
   .layout{
     position:relative;
     button.menu-toggle {
@@ -140,6 +172,8 @@ header{
     }
   }
 }
+// --- end ---//
+
 @media (min-width: 450px){
   header .layout{
     .logos{
@@ -149,6 +183,20 @@ header{
 }
 
 @media (min-width: 600px){
+  footer .layout {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: start;
+    .logo-socials{
+      align-self: stretch;
+      justify-content: space-between;
+      a.logo-icon img{ width: 150px; }
+      .socials{
+        gap: 20px;
+        a img { width: 28px; }
+      }
+    }
+  }
   header .layout {
     align-items: center;
     display: flex;
@@ -159,16 +207,17 @@ header{
       display: flex;
       flex-grow: 1;
       width: 100%;
-      background: var(--header-nav-background-color);
+      background: var(--color-header-nav-background);
       ol {
+
         flex-direction: row;
         flex-grow: 1;
         justify-content: space-around;
-        color: var(--header-nav-text-color);
+        color: var(--color-header-nav-text);
         position: relative;
         li{ 
           display: flex;
-          padding: 0 5px;
+          padding: 3px 5px;
           a{ 
             text-decoration: none;
             cursor: pointer;

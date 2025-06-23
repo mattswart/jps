@@ -4,7 +4,7 @@ export default function Nav ({ pages, showHome }){
     return (
         !!pages?.length && (
             <nav>
-                <ol>
+                <ol className="poppins-black-italic uppercase">
                     { pages.map(( page, index) => (
                         page.url == "/" && showHome == false ?
                             false

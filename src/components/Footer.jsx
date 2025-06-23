@@ -19,7 +19,7 @@ export default function Footer({ socials, pages, meta }) {
                         alt="Business logo"
                         />
                     </Link>
-                    <Socials socials={socials} hasLabel={true} hasUsername={false} />
+                    <Socials socials={socials} hasLabel={false} hasUsername={false} />
                 </div>
             </div>
         </footer>
