@@ -60,6 +60,9 @@ a { color: inherit; text-decoration: none; }
 // END RESET
 // BASE STYLING
 h1{ font-weight: 900; font-style: italic; }
+.section {
+  padding: var(--spacing-layout-y) var(--spacing-layout-x);
+}
 // END BASE STYLING
 // ----- Socials Component -----
 .socials{                   
@@ -121,7 +124,6 @@ ol.hours {
 // --- //
 // -- Footer -- //
 footer{
-  padding: var(--spacing-layout-y) var(--spacing-layout-x);
   .layout{
     display: flex;
     flex-direction: column;
@@ -148,7 +150,6 @@ footer{
 // --- //
 // -- Header -- //
 header{
-  padding: var(--spacing-layout-y) var(--spacing-layout-x);
   .layout{
     position:relative;
     button.menu-toggle {
@@ -175,10 +176,8 @@ header{
 // --- end ---//
 
 @media (min-width: 450px){
-  header .layout{
-    .logos{
-      gap: 10px;
-    }
+  header .layout .logos{
+    gap: 10px;
   }
 }
 

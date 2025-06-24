@@ -6,7 +6,7 @@ import BusinessInfo from "@/components/BusinessInfo";
 
 export default function Footer({ socials, pages, meta }) {
     return (
-        <footer>
+        <footer className="section">
             <div className="layout">
                 <Nav pages={ pages } />
                 <BusinessInfo phoneNumber={meta.phoneNumber} name={ meta.businessName } hours={ meta.hours } />
