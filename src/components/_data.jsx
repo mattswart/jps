@@ -1,3 +1,43 @@
+export const _page_ineteriorDetailing = {
+    packages: [
+        {
+            name: "Premium",
+            prices: [
+                { type: "Car",      price: "$200" },
+                { type: "Midsize",  price: "$225" },
+                { type: "SUV & Van",price: "$235" }
+            ],
+            features: [
+                "Deep vacuuming of trunk, carpets, and mats",
+                "Interior shampooing & stain removal",
+                "Full cleaning of interior panels",
+                "Leather treatment",
+                "Air vent cleansing",
+                "Interior and exterior window steaming and shining"
+            ]
+        },
+        {
+            name: "VIP",
+            prices: [
+                { type: "Car",      amount: "$265" },
+                { type: "Midsize",  amount: "$300" },
+                { type: "SUV & Van",amount: "$310" }
+            ],
+            features: [
+                "Includes all details of PREMIUM Package",
+                "Leather cleaning and reconditioning",
+                "Air vent cleansing and odor removal",
+                "Steam disinfection",
+                "Door jambs degreasing and cleaning",
+                "Leather quartz coating",
+                "Plastic Sealant"
+            ]
+        }
+
+    ]
+}
+
+
 export const _meta = {
     businessName: "JP'S Fine Auto Detailing",
     phoneNumber: "204-222-2222",

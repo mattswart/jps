@@ -54,7 +54,10 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 * { box-sizing: border-box; padding: 0; margin: 0; }
-html, body { max-width: 100vw; overflow-x: hidden; }
+html, body { 
+  max-width: 100vw; 
+  // overflow-x: hidden; 
+}
 ul, ol { list-style-type: none; }
 a { color: inherit; text-decoration: none; }
 // END RESET
@@ -63,8 +66,18 @@ h1{ font-weight: 900; font-style: italic; }
 .section {
   padding: var(--spacing-layout-y) var(--spacing-layout-x);
 }
+.y-spacing {
+  padding-top: var(--spacing-layout-y);
+  padding-bottom: var(--spacing-layout-y);
+
+}
+.x-spacing {
+  padding-left: var(--spacing-layout-x);
+  padding-right: var(--spacing-layout-x);
+  
+}
 // END BASE STYLING
-// ----- Socials Component -----
+// -- Socials Component -- //
 .socials{                   
   display: flex;  
   flex-direction: row;
@@ -83,7 +96,7 @@ header {
   &.show .socials { display: flex; }
 }                         
 // --- //
-// --- Nav Component --- //
+// -- Nav Component -- //
 nav{  
   text-transform: uppercase;
   display: flex;
@@ -173,7 +186,97 @@ header{
     }
   }
 }
-// --- end ---//
+//---//
+// -- Hero -- //
+.hero {
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  height: 500px;
+  .content{
+    position: relative;
+    h1{ text-align: center;}
+    p{ 
+      color: white; 
+      font-weight: 300;
+    }
+  }
+  .image-container{
+    position: absolute;
+    top: -10%;
+    bottom: 0;
+    left: -10%;
+    right: 0;
+    width: 120%;
+    height: 120%;
+    .image {
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(180deg,rgba(0, 0, 0, 0) 2%, rgb(0, 0, 0) 55%), url('/hero-background.png');
+      background-size: cover;
+    }
+  }
+}
+// --- //
+// -- Packages -- //
+.packages {
+  background: black;
+  color: white;
+  display: flex;
+  justify-content: center;
+  .layout {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    // width: fit-content;
+    h2{
+      font-weight: 900;
+    }
+    p.disclaimer{
+      font-weight: 300;
+    }
+    .wrapper{
+      border: 10px solid white;
+      display: flex;
+      // width: fit-content;
+      .tiers{
+        padding: 10px;
+        display: flex;
+        flex-direction: row;
+        gap: 10px;
+        .tier{
+          background: white;
+          padding: 10px;
+          color: black;
+          flex: 1 1 0;
+          // width: fit-content;
+          h3{
+            font-weight: 900;
+            font-style: italic;
+          }
+          ol.pricing{}
+          ol.features{}
+        }
+      }
+    }
+
+  }
+}
+// --- //
+// -- Heading -- //
+.heading {
+  
+  h1{
+    background: #fff;
+    background: linear-gradient(90deg,rgba(0, 0, 0, 0) 2%, rgba(255, 255, 255, 1) 55%);
+    mix-blend-mode: screen;
+  }
+  
+}
+// --- //
+
 
 @media (min-width: 450px){
   header .layout .logos{
