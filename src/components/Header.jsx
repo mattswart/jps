@@ -1,8 +1,11 @@
 import  { useState } from "react";
-import Socials from "@/components/Socials";
-import Nav from "@/components/Nav"
 import Image from "next/image"
 import Link from "next/link"
+import Nav from "@/components/Nav"
+import Socials from "@/components/Socials";
+import LogoFill from "@/components/svg/LogoFill";
+import LogoText from "@/components/svg/LogoText";
+import LogoLines from "./svg/LogoLines";
 
 export default function Header ({ socials, pages, _meta }){
   const [isVisible, setIsVisible] = useState(false);
@@ -12,20 +15,10 @@ export default function Header ({ socials, pages, _meta }){
         <div className="layout">
           <div className="logos">
             <Link href="/" className="logo-icon">
-              <Image 
-                src="/logo-icon.svg"
-                width={100}
-                height={100}
-                alt="Business logo"
-              />
+              < LogoFill fill="white" />
             </Link>
             <Link href="/" className="logo-text">
-              <Image 
-                src="/logo-text.svg"
-                width={100}
-                height={100}
-                alt="JP'S Fine Auto Detailing"
-              />
+              <LogoText fill="white"/>
             </Link>
           </div>
           <button className="menu-toggle" title="Open main menu" onClick={handleClick} >| | |</button>

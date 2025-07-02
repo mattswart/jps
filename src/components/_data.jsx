@@ -1,3 +1,7 @@
+import IconGoogleBusiness from "./svg/IconGoogleBusiness";
+import IconFacebook from "./svg/IconFacebook";
+import IconInstagram from "./svg/IconInstagram";
+
 export const _page_ineteriorDetailing = {
     packages: [
         {
@@ -59,21 +63,24 @@ export const _socials = [
     { 
         name: "Instagram", 
         username: "", 
-        url: "https://instagram.com/", 
+        url: "https://instagram.com/",
+        component: "IconInstagram", 
         icon: "/icon-instagram.svg", 
         iconAltText: "Visit our Instagram page." 
     },
     { 
         name: "Facebook", 
         username: "", 
-        url: "https://facebook.com", 
+        url: "https://facebook.com",
+        component: "IconFacebook", 
         icon: "/icon-facebook.svg", 
         iconAltText: "Visit our Facebook page." 
     },
     { 
         name: "Google Business", 
         username: "", 
-        url: "https://google.com", 
+        url: "https://google.com",
+        component: "IconGoogleBusiness", 
         icon: "/icon-google-business.svg", 
         iconAltText: "Visit our Google Business profile." 
     },

@@ -13,7 +13,7 @@ export default function Layout({ children }) {
   return (
     <>
         <Header socials={_socials} pages={_pages} meta={_meta} />
-            {children}
+        {children}
         <Footer socials={_socials} pages={_pages} meta={_meta}/>
     </>
   )
