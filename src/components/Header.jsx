@@ -59,7 +59,9 @@ export default function Header ({ socials, pages, _meta }){
             md:flex 
             md:bg-white 
             md:text-black 
-            md:justify-between
+            md:justify-between 
+            md:px-[6px] 
+            md:h-[30px]
 
           `}>
             <ol className="
@@ -71,6 +73,7 @@ export default function Header ({ socials, pages, _meta }){
               flex-col 
               w-max 
               md:w-full
+              md:items-center 
               md:flex-row
               md:justify-between 
             ">
@@ -87,13 +90,14 @@ export default function Header ({ socials, pages, _meta }){
                             md:flex 
                             md:overflow-hidden 
                             md:h-0 
-                            md:group-hover:h-[24px] 
+                            md:items-center 
+                            md:group-hover:h-[30px] 
                             md:transition-all 
                             md:duration-200 
                             md:absolute 
                             md:bg-white 
                             md:w-full 
-                            md:px-[6px] 
+                            md:px-[6px]  
                             md:gap-[6px] 
                             md:left-0 
                             md:right-0 

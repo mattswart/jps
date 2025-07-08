@@ -7,7 +7,7 @@ export default function Hero({image, heading, body}){
             {/* BACKGROUND IMAGE CONTAINER (Hack so background-size cover always maintains a resonable aspect ratio) */}
             <div className="image-container bg-white absolute h-[120%] w-[120%] top-[-10%] left-[-10%] bottom-0 right-0">
                 {/* BACKGROUND IMAGE */}
-                <div className="image w-full h-full" style={{background: `linear-gradient(180deg,rgba(0, 0, 0, 0) 2%, rgb(0, 0, 0) 55%), url('${image}')`, backgroundSize: "cover", backgroundPosition: "center"}}></div>
+                <div className="image w-full h-full" style={{background: `linear-gradient(180deg,rgba(0, 0, 0, 0) 2%, rgb(0, 0, 0) 85%), url('${image}')`, backgroundSize: "cover", backgroundPosition: "center"}}></div>
             </div>
             {/* CONTENT */}
             <div className="pt-[240px]">

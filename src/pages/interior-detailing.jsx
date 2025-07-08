@@ -11,7 +11,7 @@ export default function InteriorDetailing () {
                 <Hero heading={_ineteriorDetailing.heroHeading} body={_ineteriorDetailing.heroBody} image={_ineteriorDetailing.heroImage} />
                 {/* PACKAGES */}
                 <div className="section w-fit flex flex-col  items-end m-auto">
-                    <h2 className="uppercase text-white font-extrabold text-4xl pb-4 text-right">Packages</h2>
+                    <h2 className="uppercase text-white font-extrabold text-4xl pb-2 text-right">Packages</h2>
                     <p className="disclaimer text-white font-extralight pb-4 text-right">*Extraneous factors such as pet hair, salt stains and odors may effect pricing.</p>
                     <PackageCard packages={_ineteriorDetailing.packages} />
                 </div>
