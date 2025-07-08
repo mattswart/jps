@@ -56,7 +56,10 @@ export default function Header ({ socials, pages, _meta }){
             flex-col
             items-center  
             md:relative 
-            md:flex  
+            md:flex 
+            md:bg-white 
+            md:text-black 
+            md:justify-between
 
           `}>
             <ol className="
@@ -67,6 +70,7 @@ export default function Header ({ socials, pages, _meta }){
               grow 
               flex-col 
               w-max 
+              md:w-full
               md:flex-row
               md:justify-between 
             ">
