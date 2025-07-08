@@ -2,14 +2,89 @@ import IconGoogleBusiness from "./svg/IconGoogleBusiness";
 import IconFacebook from "./svg/IconFacebook";
 import IconInstagram from "./svg/IconInstagram";
 
-export const _page_ineteriorDetailing = {
+export const _paintCorrection = {
+    heroImage: '/hero-background.png',
+    heroHeading: "Paint Correction",
+    heroBody: "Sed ut perspiciatis unde omnis iste natus error sit voluptatem  accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt  explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut  odit aut fugit, sed quia consequuntur magni dolores eos qui ratione  voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum  quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam  eius modi.", 
+}
+export const _ppf = {
+    heroImage: '/hero-background.png',
+    heroHeading: "Paint Protection Film",
+    heroBody: "Sed ut perspiciatis unde omnis iste natus error sit voluptatem  accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt  explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut  odit aut fugit, sed quia consequuntur magni dolores eos qui ratione  voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum  quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam  eius modi.", 
+}
+export const _windowTinting = {
+    heroImage: '/hero-background.png',
+    heroHeading: "Window Tinting",
+    heroBody: "Sed ut perspiciatis unde omnis iste natus error sit voluptatem  accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt  explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut  odit aut fugit, sed quia consequuntur magni dolores eos qui ratione  voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum  quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam  eius modi.", 
+}
+
+export const _ceramicCoating = {
+    heroImage: '/hero-background.png',
+    heroHeading: "Ceramic Coating",
+    heroBody: "Sed ut perspiciatis unde omnis iste natus error sit voluptatem  accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt  explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut  odit aut fugit, sed quia consequuntur magni dolores eos qui ratione  voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum  quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam  eius modi.", 
+    packages: [
+        {
+            name: "Level 1",
+            tagline: "Flash Coat",
+            description: "A highly performant ceramic coating that provides advanced chemical & UV protection. Resulting in a high gloss finish, eliminating the need to ever wax your car again.",
+            features: [
+                "Treatment to all painted surfaces",
+                "Full exterior paint ceramic Coating",
+                "10 year warranty",
+            ]
+        },
+        {
+            name: "Level 2",
+            tagline: "Base Coat",
+            description: "A premium ceramic coating guaranteeing outstanding durability, hydrophobicity and self cleaning properties. Provides intense gloss and hydrophobic properties making regular maintenance washing faster and less intensive.",
+            features: [
+                "Full exterior paint ceramic coating",
+                "Full glass ceramic coating",
+                "Full trim ceramic coating",
+                "Full Front Face rim ceramic coating",
+                "Lifetime Warranty",
+            ]
+        },
+        {
+            name: "Level 3",
+            tagline: "Base & Top Coat",
+            features: [
+                "Lifetime warranty",
+                "Full exterior paint ceramic coating",
+                "An additional layer of top coat treatment",
+                "Full glass ceramic coating",
+                "Full trim ceramic coating",
+                "Full front face rim ceramic coating"
+            ]
+        }
+    ],
+    faqs: [
+    { 
+        q: 'Is the film visible?', 
+        a: 'Our modern PPF is virtually invisible. We use computer-cut patterns and wrap edges where possible to ensure a seamless, undetectable finish.' 
+    },
+    { 
+        q: 'Can you apply ceramic coating over PPF?', 
+        a: 'Yes, and we highly recommend it. Applying a ceramic coating over PPF adds hydrophobic properties, making it easier to clean, and enhances the gloss of the film.' 
+    },
+    { 
+        q: 'Can you apply ceramic coating over PPF?', 
+        a: 'Yes, and we highly recommend it. Applying a ceramic coating over PPF adds hydrophobic properties, making it easier to clean, and enhances the gloss of the film.' 
+    },
+]
+
+}
+export const _ineteriorDetailing = {
+    heroImage: '/hero-background.png',
+    heroHeading: "Interior Detailing",
+    heroBody: "Sed ut perspiciatis unde omnis iste natus error sit voluptatem  accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt  explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut  odit aut fugit, sed quia consequuntur magni dolores eos qui ratione  voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum  quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam  eius modi.", 
     packages: [
         {
             name: "Premium",
             prices: [
-                { type: "Car",      price: "$200" },
-                { type: "Midsize",  price: "$225" },
-                { type: "SUV & Van",price: "$235" }
+                { type: "Car",      amount: "$200" }, 
+                { type: "Midsize",  amount: "$225" }, 
+                { type: "SUV & Van",amount: "$235" }
             ],
             features: [
                 "Deep vacuuming of trunk, carpets, and mats",
@@ -17,7 +92,7 @@ export const _page_ineteriorDetailing = {
                 "Full cleaning of interior panels",
                 "Leather treatment",
                 "Air vent cleansing",
-                "Interior and exterior window steaming and shining"
+                "Interior & exterior window steaming & shining"
             ]
         },
         {
@@ -38,13 +113,27 @@ export const _page_ineteriorDetailing = {
             ]
         }
 
+    ],
+    faqs: [
+        { 
+            q: 'Is the film visible?', 
+            a: 'Our modern PPF is virtually invisible. We use computer-cut patterns and wrap edges where possible to ensure a seamless, undetectable finish.' 
+        },
+        { 
+            q: 'Can you apply ceramic coating over PPF?', 
+            a: 'Yes, and we highly recommend it. Applying a ceramic coating over PPF adds hydrophobic properties, making it easier to clean, and enhances the gloss of the film.' 
+        },
+        { 
+            q: 'Can you apply ceramic coating over PPF?', 
+            a: 'Yes, and we highly recommend it. Applying a ceramic coating over PPF adds hydrophobic properties, making it easier to clean, and enhances the gloss of the film.' 
+        },
     ]
 }
 
 
 export const _meta = {
     businessName: "JP'S Fine Auto Detailing",
-    phoneNumber: "204-222-2222",
+    phoneNumber: "(204)222-2222",
     logo: "",
     logoAlt: "",
     logoAltText: "",
@@ -90,12 +179,14 @@ export const _pages = [
     { name: "Home", url: "/" },
     { name: "Ceramic Coating", url: "/ceramic-coating" },
     { name: "PPF", url: "/paint-protection-film" },
+    { name: "Window Tinting", url: "/window-tinting" },
     { name: "Detailing", url: "", subPages: [
         { name: "Complete", url: "/complete-detailing" },
         { name: "Interior", url: "/interior-detailing" },
         { name: "Exterior", url: "/exterior-detailing" },
         { name: "Paint Correction", url: "/paint-correction" }
     ]},
+    { name: "Gallery", url: "/gallery" },
     { name: "About Us", url: "/about-us" },
     { name: "Contact", url: "/contact" },
 

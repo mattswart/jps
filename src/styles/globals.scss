@@ -1,3 +1,6 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 :root {
   // --background: #ffffff;
@@ -43,12 +46,14 @@
 .poppins-bold-italic { font-family: "Poppins", sans-serif; font-weight: 700; font-style: italic; }
 .poppins-extrabold-italic { font-family: "Poppins", sans-serif; font-weight: 800; font-style: italic; }
 .poppins-black-italic { font-family: "Poppins", sans-serif; font-weight: 900; font-style: italic; }
+.poppins-black-extended { font-family: "Poppins", sans-serif; font-weight: 900; font-style: italic; font-stretch: 200%; }
 
 .uppercase { text-transform: uppercase; }
 // RESET
 body {
   // color: var(--foreground);
   // background: var(--background);
+  background: black;
   font-family: "Poppins", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -61,11 +66,54 @@ html, body {
 ul, ol { list-style-type: none; }
 a { color: inherit; text-decoration: none; }
 // END RESET
+
+
+
+.section{
+  padding: 30px 12px;
+  @media(min-width: 640px){padding: 30px;} //sm
+  @media(min-width: 768px){padding: 50px 50px;} //md
+  @media(min-width: 1024px){} //lg
+  @media(min-width: 1280px){ padding: 60px 0; max-width: 1100px; margin: auto;} //xl
+  @media(min-width: 1536px){} //2xl
+}
+.section-full{
+  width: 100%;
+  padding: 0;
+}
+
+  
+.hero h1{
+  background: linear-gradient(90deg,rgba(0, 0, 0, 0) 2%, rgba(255, 255, 255, 1) 55%);
+  mix-blend-mode: screen;
+  span.text{}
+  span.bar{ 
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    margin: auto;
+    height: 60%;
+    width: 4%;
+    transform: skew( -15deg, 0deg);
+    // background: black;
+    background: rgba(0, 0, 0, 0.5);
+    &:nth-of-type(1) { left: -2%; }
+    &:nth-of-type(2) { left: 4%; }
+    &:nth-of-type(3) { left: 10%; }
+    &:nth-of-type(4) { left: 16%; }
+    &:nth-of-type(5) { left: 22%; }
+  }
+
+}
+
+
+
 // BASE STYLING
 h1{ font-weight: 900; font-style: italic; }
-.section {
-  padding: var(--spacing-layout-y) var(--spacing-layout-x);
-}
+// .section {
+//   padding: var(--spacing-layout-y) var(--spacing-layout-x);
+// }
 .y-spacing {
   padding-top: var(--spacing-layout-y);
   padding-bottom: var(--spacing-layout-y);
@@ -117,10 +165,7 @@ header{
   &.show nav {display: flex;}
 }     
   // --- //
-// -- BusinessPhoneNumber -- //
-.phone {
-  
-}
+
 // --- //
 // -- BusinessHours -- //
 ol.hours { 
@@ -134,34 +179,6 @@ ol.hours {
     gap: 20px;
   }
 }
-// --- //
-// -- Footer -- //
-footer{
-  .layout{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    .business-info {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      h4.name{ text-align: center; }
-    }
-    .logo-socials{
-      display: flex;
-      flex-direction: column-reverse;
-      align-items: center;
-      a.logo-icon{
-        img{
-          width: 35vw;
-          height: auto;
-        }
-      }
-    }
-  }
-}
-// --- //
-// -- Header -- //
 header{
   z-index: 100;
   position:absolute;
@@ -191,115 +208,7 @@ header{
     }
   }
 }
-//---//
-// -- Hero -- //
-.hero {
-  position: relative;
-  overflow: hidden;
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-  height: 500px;
-  .content{
-    position: relative;
-    h1{ text-align: center;}
-    p{ 
-      color: white; 
-      font-weight: 300;
-    }
-  }
-  .image-container{
-    position: absolute;
-    top: -10%;
-    bottom: 0;
-    left: -10%;
-    right: 0;
-    width: 120%;
-    height: 120%;
-    .image {
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(180deg,rgba(0, 0, 0, 0) 2%, rgb(0, 0, 0) 55%), url('/hero-background.png');
-      background-size: cover;
-    }
-  }
-}
-// --- //
-// -- Packages -- //
-.packages {
-  background: black;
-  color: white;
-  display: flex;
-  justify-content: center;
-  .layout {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
-    // width: fit-content;
-    h2{
-      font-weight: 900;
-    }
-    p.disclaimer{
-      font-weight: 300;
-    }
-    .wrapper{
-      border: 10px solid white;
-      display: flex;
-      // width: fit-content;
-      .tiers{
-        padding: 10px;
-        display: flex;
-        flex-direction: row;
-        gap: 10px;
-        .tier{
-          background: white;
-          padding: 10px;
-          color: black;
-          flex: 1 1 0;
-          // width: fit-content;
-          h3{
-            font-weight: 900;
-            font-style: italic;
-          }
-          ol.pricing{}
-          ol.features{}
-        }
-      }
-    }
 
-  }
-}
-// --- //
-// -- Heading -- //
-.heading {
-  
-  h1{
-    background: #fff;
-    background: linear-gradient(90deg,rgba(0, 0, 0, 0) 2%, rgba(255, 255, 255, 1) 55%);
-    mix-blend-mode: screen;
-    position: relative;
-    span{ 
-      // content: " ";
-      position: absolute;
-      top: 0;
-      bottom: 0;
-      left: 0;
-      margin: auto;
-      height: 60%;
-      width: 4%;
-      transform: skew( -15deg, 0deg);
-      background: black;
-      &:nth-of-type(1) { left: -2%; }
-      &:nth-of-type(2) { left: 4%; }
-      &:nth-of-type(3) { left: 10%; }
-      &:nth-of-type(4) { left: 16%; }
-      &:nth-of-type(5) { left: 22%; }
-
-    }
-  }
-  
-}
-// --- //
 
 
 @media (min-width: 450px){
@@ -309,20 +218,6 @@ header{
 }
 
 @media (min-width: 600px){
-  footer .layout {
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: start;
-    .logo-socials{
-      align-self: stretch;
-      justify-content: space-between;
-      a.logo-icon img{ width: 150px; }
-      .socials{
-        gap: 20px;
-        a img { width: 28px; }
-      }
-    }
-  }
   header .layout {
     align-items: center;
     display: flex;

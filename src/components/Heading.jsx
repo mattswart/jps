@@ -1,9 +1,9 @@
 
 
-export default function Heading({ text, uppercase }){
+export default function Heading({ text }){
     return(
         <div className="heading section-spacing">
-            <h1 className={ uppercase ? "uppercase" : "" }>
+            <h1 className="uppercase text-4xl">
                 <span></span>
                 <span></span>
                 <span></span>

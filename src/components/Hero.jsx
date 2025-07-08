@@ -1,14 +1,25 @@
-import Heading from "@/components/Heading"
+import { _ineteriorDetailing } from "@/components/_data"
 
-export default function Hero ({image}) {
-    return (
-        <div className="hero">
-            <div className="image-container">
-                <div className="image"></div>
+
+export default function Hero({image, heading, body}){
+    return(
+        <div className="hero relative flex flex-col mh-[500px] overflow-hidden">
+            {/* BACKGROUND IMAGE CONTAINER (Hack so background-size cover always maintains a resonable aspect ratio) */}
+            <div className="image-container bg-white absolute h-[120%] w-[120%] top-[-10%] left-[-10%] bottom-0 right-0">
+                {/* BACKGROUND IMAGE */}
+                <div className="image w-full h-full" style={{background: `linear-gradient(180deg,rgba(0, 0, 0, 0) 2%, rgb(0, 0, 0) 55%), url('${image}')`, backgroundSize: "cover", backgroundPosition: "center"}}></div>
             </div>
-            <div className="content">
-                <Heading uppercase="true" text="Interior Detailing" />
-                <p className="x-spacing">Sed ut perspiciatis unde omnis iste natus error sit voluptatem  accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt  explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut  odit aut fugit, sed quia consequuntur magni dolores eos qui ratione  voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum  quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam  eius modi.</p>
+            {/* CONTENT */}
+            <div className="pt-[240px]">
+                <h1 className=" hero uppercase text-4xl flex relative bg-white mix-blend-screen justify-center leading-none py-[10px]">
+                    <span className="bar"></span>
+                    <span className="bar"></span>
+                    <span className="bar"></span>
+                    <span className="bar"></span>
+                    <span className="bar"></span>
+                    <span className="text-right w-min sm:w-full sm:text-center">{heading}</span>
+                </h1>
+                <p className="section text-white relative font-light">{body}</p>
             </div>
         </div>
     )
