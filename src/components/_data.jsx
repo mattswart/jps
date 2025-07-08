@@ -175,7 +175,23 @@ export const _socials = [
     },
 ];
 
-export const _pages = [
+export const _pagesHeader = [
+    { name: "Ceramic Coating", url: "/ceramic-coating" },
+    { name: "PPF", url: "/paint-protection-film" },
+    { name: "Window Tinting", url: "/window-tinting" },
+    { name: "Detailing", url: "", subPages: [
+        { name: "Complete", url: "/complete-detailing" },
+        { name: "Interior", url: "/interior-detailing" },
+        { name: "Exterior", url: "/exterior-detailing" },
+        { name: "Paint Correction", url: "/paint-correction" },
+        { name: "Track Cleanup", url:'/track-cleanup'}
+    ]},
+    { name: "Gallery", url: "/gallery" },
+    { name: "About", url: "/about-us" },
+    { name: "Contact", url: "/contact" },
+
+];
+export const _pagesFooter = [
     { name: "Home", url: "/" },
     { name: "Ceramic Coating", url: "/ceramic-coating" },
     { name: "PPF", url: "/paint-protection-film" },
@@ -184,10 +200,11 @@ export const _pages = [
         { name: "Complete", url: "/complete-detailing" },
         { name: "Interior", url: "/interior-detailing" },
         { name: "Exterior", url: "/exterior-detailing" },
-        { name: "Paint Correction", url: "/paint-correction" }
+        { name: "Paint Correction", url: "/paint-correction" },
+        { name: "Track Cleanup", url: "/track-cleanup" }
     ]},
     { name: "Gallery", url: "/gallery" },
-    { name: "About Us", url: "/about-us" },
+    { name: "About", url: "/about-us" },
     { name: "Contact", url: "/contact" },
 
 ];

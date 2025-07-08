@@ -1,4 +1,4 @@
-import { _paintCorrection } from "@/components/_data"
+import { _paintCorrection } from "@/components/_data";
 import Hero from "@/components/Hero"
 
 export default function PaintCorrection () {

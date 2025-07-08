@@ -1,6 +1,6 @@
 import Header from "@/components/Header";
 import Footer from "@/components/Footer"
-import { _socials, _pages, _meta } from "@/components/_data" 
+import { _socials, _pagesFooter, _pagesHeader, _meta } from "@/components/_data" 
 import { Poppins } from "next/font/google";
 
 // const poppins = Poppins({
@@ -12,9 +12,9 @@ import { Poppins } from "next/font/google";
 export default function Layout({ children }) {
   return (
     <>
-        <Header socials={_socials} pages={_pages} meta={_meta} />
+        <Header socials={_socials} pages={_pagesHeader} meta={_meta} />
         {children}
-        <Footer socials={_socials} pages={_pages} meta={_meta}/>
+        <Footer socials={_socials} pages={_pagesFooter} meta={_meta}/>
     </>
   )
 }
