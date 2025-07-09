@@ -1,14 +1,15 @@
-import { useLayoutEffect } from 'react';
+import { useEffect } from 'react'; // Import useEffect instead
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import Header from "@/components/Header";
 import Footer from "@/components/Footer"
-import { _socials, _pagesFooter, _pagesHeader, _meta } from "@/components/_data" 
+import { _socials, _pagesFooter, _pagesHeader, _meta } from "@/components/_data"
 
 gsap.registerPlugin(ScrollTrigger);
 
 export default function Layout({ children }) {
-  useLayoutEffect(() => {
+  // Switch to useEffect
+  useEffect(() => {
     // Target the <header> element for pinning
     const header = document.querySelector('header');
 
@@ -29,7 +30,7 @@ export default function Layout({ children }) {
     return () => {
       st.kill();
     };
-  }, []);
+  }, []); // The empty dependency array means this effect runs once on mount
 
   return (
     <>

@@ -96,7 +96,7 @@ header {
   &.show nav{}  
 }
 .viewer{
-  &.pinned{background: pink;}
+  &.pinned{  will-change: transform;}
 }
 .pinned{}
 @keyframes slideDown {

@@ -1,4 +1,4 @@
-import { useLayoutEffect, Suspense, useState, useEffect} from "react";
+import { useEffect, Suspense, useState, useLayoutEffect as useOriginalLayoutEffect } from "react"; // Import useEffect
 import { Canvas } from '@react-three/fiber';
 import { OrbitControls, Environment, Bounds } from '@react-three/drei';
 import { gsap } from 'gsap';
@@ -10,6 +10,7 @@ import ModelViewer from "@/components/ModelViewer";
 import { _ineteriorDetailing } from "@/components/_data";
 
 
+
 gsap.registerPlugin(ScrollTrigger);
 
 export default function InteriorDetailing() {
@@ -19,7 +20,7 @@ export default function InteriorDetailing() {
      const [isWebGLBroken, setIsWebGLBroken] = useState(false);
 
     useEffect(() => {
-        // This effect runs once when the component mounts to check for the WebGL bug
+        // This effect for the WebGL bug detection remains the same
         const canvas = document.createElement('canvas');
         try {
             const gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
@@ -33,7 +34,7 @@ export default function InteriorDetailing() {
         }
     }, []);
 
-    useLayoutEffect(() => {
+    useEffect(() => {
         // Select all the elements we'll need for the animations
         const header = document.querySelector('header');
         const targetEl = document.querySelector('.viewer');
@@ -70,7 +71,10 @@ export default function InteriorDetailing() {
                 pin: true,
                 pinSpacing: false,
                 invalidateOnRefresh: true,
-                markers:true,
+                toggleClass: {
+                    className: 'pinned',
+                    targets: targetEl
+                }
             });
         });
 
@@ -81,23 +85,20 @@ export default function InteriorDetailing() {
     }, []);
 
     return (
-        <main className="bg-black">
+       <main className="bg-black">
             <Hero heading={_ineteriorDetailing.heroHeading} body={_ineteriorDetailing.heroBody} image={_ineteriorDetailing.heroImage} />
             {/* PACKAGES */}
             <div className="section packages-section w-fit flex flex-col items-end m-auto">
                 <h2 className="uppercase text-white font-extrabold text-4xl pb-2 text-right">Packages</h2>
                 <p className="disclaimer text-white font-extralight pb-4 text-right">*Extraneous factors such as pet hair, salt stains and odors may effect pricing.</p>
-                <div id="viewer" className="viewer w-full aspect-video min-h-[300px] bg-orange-500 mb-4">
-                    {isWebGLBroken ? (
-                        // If the bug is detected, show this fallback image.
-                        // You can replace the src with a high-quality render of your car.
+                <div id="viewer" className="viewer w-full aspect-video min-h-[300px] mb-4 bg-orange-500">
+                     {isWebGLBroken ? (
                         <img 
-                            src="/porsche_fallback.png" // Replace with your fallback image path
+                            src="/porsche_fallback.png"
                             alt="Interior detailing preview" 
                             style={{ width: '100%', height: '100%', objectFit: 'cover' }} 
                         />
                     ) : (
-                        // Otherwise, render the interactive 3D model
                         <Canvas camera={{ position: [0, 0, 5], fov: 50 }} dpr={[1, 1.5]}>
                             <Suspense fallback={null}>
                                 <ambientLight intensity={0.5} />
@@ -112,7 +113,7 @@ export default function InteriorDetailing() {
                         </Canvas>
                     )}
                 </div>
-                <PackageCard packages={_ineteriorDetailing.packages} setAnimation={setAnimation}/>
+                <PackageCard packages={_ineteriorDetailing.packages} setAnimation={setAnimation} />
             </div>
             {/* FAQ */}
             <div className="section text-white flex flex-col md:flex-row md:gap-6">
