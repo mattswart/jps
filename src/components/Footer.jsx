@@ -31,7 +31,7 @@ export default function Footer({ socials, pages, meta }) {
             {/* BUSINESS INFO AND HOURS */}
             <div className="business-info text-center flex flex-col gap-1 items-center ">
                 <div className="uppercase text-xl">
-                    <span className="font-black italic mr-1">JP's </span>
+                    <span className="font-black italic mr-1">JP&apos;s </span>
                     <span className="font-medium">Fine Auto </span>
                     <span className="font-extrabold">Detailing</span>
                 </div>

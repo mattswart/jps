@@ -1,8 +1,9 @@
-import { useEffect, Suspense, useState, useLayoutEffect as useOriginalLayoutEffect } from "react"; // Import useEffect
+import { useEffect, Suspense, useState, useLayoutEffect as useOriginalLayoutEffect, useRef } from "react"; // Import useEffect
 import { Canvas } from '@react-three/fiber';
 import { OrbitControls, Environment, Bounds } from '@react-three/drei';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import Image from "next/image";
 import Hero from "@/components/Hero";
 import PackageCard from "@/components/PackageCard";
 import FaqItem from "@/components/FaqItem";
@@ -12,6 +13,29 @@ import { _ineteriorDetailing } from "@/components/_data";
 
 
 gsap.registerPlugin(ScrollTrigger);
+
+const Loader = () => {
+    const loaderRef = useRef(null);
+  
+    useEffect(() => {
+      // Animate the loader using GSAP
+      if (loaderRef.current) {
+        gsap.to(loaderRef.current, {
+          rotation: 360,
+          duration: 1,
+          ease: 'none',
+          repeat: -1,
+        });
+      }
+    }, []);
+  
+    return (
+      <div className="loader-container">
+        <div ref={loaderRef} className="loader-spinner" />
+      </div>
+    );
+  };
+
 
 export default function InteriorDetailing() {
     // State to control the currently active animation
@@ -85,35 +109,37 @@ export default function InteriorDetailing() {
     }, []);
 
     return (
-       <main className="bg-black">
+        <main className="bg-black">
             <Hero heading={_ineteriorDetailing.heroHeading} body={_ineteriorDetailing.heroBody} image={_ineteriorDetailing.heroImage} />
             {/* PACKAGES */}
-            <div className="section packages-section w-fit flex flex-col items-end m-auto">
+            <div className="section packages-section w-full flex flex-col items-end m-auto">
                 <h2 className="uppercase text-white font-extrabold text-4xl pb-2 text-right">Packages</h2>
                 <p className="disclaimer text-white font-extralight pb-4 text-right">*Extraneous factors such as pet hair, salt stains and odors may effect pricing.</p>
-                <div id="viewer" className="viewer w-full aspect-video min-h-[300px] mb-4 bg-orange-500">
-                     {isWebGLBroken ? (
-                        <img 
-                            src="/porsche_fallback.png"
+                <div id="viewer" className="viewer w-full aspect-video max-h-[200px] md:max-h-[300px] bg-orange-500 mb-4">
+                    {isWebGLBroken ? (
+                        // If the bug is detected, show this fallback image.
+                        // You can replace the src with a high-quality render of your car.
+                        <Image 
+                            src="/porsche_fallback.png" // Replace with your fallback image path
                             alt="Interior detailing preview" 
                             style={{ width: '100%', height: '100%', objectFit: 'cover' }} 
                         />
                     ) : (
-                        <Canvas camera={{ position: [0, 0, 5], fov: 50 }} dpr={[1, 1.5]}>
-                            <Suspense fallback={null}>
+                        // Otherwise, render the interactive 3D model
+                        <Suspense fallback={<Loader />}>
+                            <Canvas camera={{ position: [0, 0, 5], fov: 50 }} dpr={[1, 1.5]}>
                                 <ambientLight intensity={0.5} />
                                 <directionalLight position={[10, 10, 5]} intensity={1.5} />
                                 <directionalLight position={[-10, -10, -5]} intensity={1} />
-                                <Bounds fit clip observe>
+                                <Bounds fit clip observe margin={0.8}>
                                     <ModelViewer modelPath="/porsche_911_turbo_s.glb" animation={animation} />
                                 </Bounds>
-                                <OrbitControls makeDefault enabled={false} />
                                 <Environment preset="studio" />
-                            </Suspense>
-                        </Canvas>
+                            </Canvas>
+                        </Suspense>
                     )}
                 </div>
-                <PackageCard packages={_ineteriorDetailing.packages} setAnimation={setAnimation} />
+                <PackageCard packages={_ineteriorDetailing.packages} setAnimation={setAnimation}/>
             </div>
             {/* FAQ */}
             <div className="section text-white flex flex-col md:flex-row md:gap-6">
