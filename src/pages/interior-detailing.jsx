@@ -1,15 +1,21 @@
-import { useLayoutEffect } from "react";
+import { useLayoutEffect, Suspense, useState } from "react";
+import { Canvas } from '@react-three/fiber';
+import { OrbitControls, Environment, Bounds } from '@react-three/drei';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import Heading from "@/components/Heading"
-import Hero from "@/components/Hero"
-import PackageCard from "@/components/PackageCard"
-import FaqItem from "@/components/FaqItem"
-import { _ineteriorDetailing } from "@/components/_data"
+import Hero from "@/components/Hero";
+import PackageCard from "@/components/PackageCard";
+import FaqItem from "@/components/FaqItem";
+import ModelViewer from "@/components/ModelViewer";
+import { _ineteriorDetailing } from "@/components/_data";
+
 
 gsap.registerPlugin(ScrollTrigger);
 
 export default function InteriorDetailing() {
+    // State to control the currently active animation
+    const [animation, setAnimation] = useState('card-0');
+
     useLayoutEffect(() => {
         // Select all the elements we'll need for the animations
         const header = document.querySelector('header');
@@ -43,7 +49,7 @@ export default function InteriorDetailing() {
                 trigger: targetEl,
                 start: () => `top ${header.offsetHeight}px`,
                 // The calculation is the same, but it will run with mobile-specific element heights
-                end: () => `${endEl.offsetHeight}px`,
+                end: () => `+=${endEl.getBoundingClientRect().bottom - targetEl.getBoundingClientRect().bottom}`,
                 pin: true,
                 pinSpacing: false,
                 invalidateOnRefresh: true,
@@ -64,8 +70,21 @@ export default function InteriorDetailing() {
             <div className="section packages-section w-fit flex flex-col items-end m-auto">
                 <h2 className="uppercase text-white font-extrabold text-4xl pb-2 text-right">Packages</h2>
                 <p className="disclaimer text-white font-extralight pb-4 text-right">*Extraneous factors such as pet hair, salt stains and odors may effect pricing.</p>
-                <div id="viewer" className="viewer w-full min-h-[300px] bg-orange-500 mb-4">asd </div>
-                <PackageCard packages={_ineteriorDetailing.packages} />
+                <div id="viewer" className="viewer w-full aspect-video min-h-[300px] bg-orange-500 mb-4">
+                    <Canvas camera={{ position: [0, 0, 5], fov: 50 }} dpr={[1, 1.5]}>
+                        <Suspense fallback={null}>
+                            <ambientLight intensity={0.5} />
+                            <directionalLight position={[10, 10, 5]} intensity={1.5} />
+                            <directionalLight position={[-10, -10, -5]} intensity={1} />
+                            <Bounds fit clip observe>
+                                {/* Pass the animation state to the model */}
+                                <ModelViewer modelPath="/porsche_911_turbo_s.glb" animation={animation} />
+                            </Bounds>
+                            <Environment preset="studio" />
+                        </Suspense>
+                    </Canvas>
+                </div>
+                <PackageCard packages={_ineteriorDetailing.packages} setAnimation={setAnimation}/>
             </div>
             {/* FAQ */}
             <div className="section text-white flex flex-col md:flex-row md:gap-6">

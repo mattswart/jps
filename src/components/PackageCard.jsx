@@ -1,33 +1,36 @@
-export default function PackageCard({ packages }){
+export default function PackageCard({ packages, setAnimation }){
     return(
-        <div 
+        <div
             className="
-                package-cards 
-                flex 
+                package-cards
+                flex
                 flex-col
                 border-white
                 border-[12px]
-                rounded-[1px] 
-                gap-3 
-                p-3 
-                m-auto  
+                rounded-[1px]
+                gap-3
+                p-3
+                m-auto
                 w-fit
-                md:flex-row 
+                md:flex-row
             "
         >
             { packages.map((tier, index) => (
-                <div 
-                    key={index} 
+                <div
+                    key={index}
                     className={`
-                        package-card 
-                        card-${index} 
+                        package-card
+                        card-${index}
                         bg-white
-                        rounded-[1px] 
-                        p-3 
-                        w-auto 
+                        rounded-[1px]
+                        p-3
+                        w-auto
                         items-start
-                        md:basis-1/2 
+                        md:basis-1/2
+                        cursor-pointer
                     `}
+                    // 2. Set the animation on hover. It will now persist.
+                    onMouseEnter={() => setAnimation(`card-${index}`)}
                 >
                     <h3 className="text-2xl uppercase font-black italic">{tier.name}</h3>
                     <ol className="pricing">
