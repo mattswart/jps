@@ -1,4 +1,4 @@
-import { useLayoutEffect, Suspense, useState } from "react";
+import { useLayoutEffect, Suspense, useState, useEffect} from "react";
 import { Canvas } from '@react-three/fiber';
 import { OrbitControls, Environment, Bounds } from '@react-three/drei';
 import { gsap } from 'gsap';
@@ -15,6 +15,23 @@ gsap.registerPlugin(ScrollTrigger);
 export default function InteriorDetailing() {
     // State to control the currently active animation
     const [animation, setAnimation] = useState('card-0');
+
+     const [isWebGLBroken, setIsWebGLBroken] = useState(false);
+
+    useEffect(() => {
+        // This effect runs once when the component mounts to check for the WebGL bug
+        const canvas = document.createElement('canvas');
+        try {
+            const gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
+            if (gl && gl.getShaderPrecisionFormat(gl.VERTEX_SHADER, gl.HIGH_FLOAT).precision === 0) {
+                console.log('Safari WebGL bug detected, falling back to an image.');
+                setIsWebGLBroken(true);
+            }
+        } catch (e) {
+            console.log('WebGL is not supported or context creation failed, falling back to an image.');
+            setIsWebGLBroken(true);
+        }
+    }, []);
 
     useLayoutEffect(() => {
         // Select all the elements we'll need for the animations
@@ -71,18 +88,29 @@ export default function InteriorDetailing() {
                 <h2 className="uppercase text-white font-extrabold text-4xl pb-2 text-right">Packages</h2>
                 <p className="disclaimer text-white font-extralight pb-4 text-right">*Extraneous factors such as pet hair, salt stains and odors may effect pricing.</p>
                 <div id="viewer" className="viewer w-full aspect-video min-h-[300px] bg-orange-500 mb-4">
-                    <Canvas camera={{ position: [0, 0, 5], fov: 50 }} dpr={[1, 1.5]}>
-                        <Suspense fallback={null}>
-                            <ambientLight intensity={0.5} />
-                            <directionalLight position={[10, 10, 5]} intensity={1.5} />
-                            <directionalLight position={[-10, -10, -5]} intensity={1} />
-                            <Bounds fit clip observe>
-                                {/* Pass the animation state to the model */}
-                                <ModelViewer modelPath="/porsche_911_turbo_s.glb" animation={animation} />
-                            </Bounds>
-                            <Environment preset="studio" />
-                        </Suspense>
-                    </Canvas>
+                    {isWebGLBroken ? (
+                        // If the bug is detected, show this fallback image.
+                        // You can replace the src with a high-quality render of your car.
+                        <img 
+                            src="/porsche_fallback.png" // Replace with your fallback image path
+                            alt="Interior detailing preview" 
+                            style={{ width: '100%', height: '100%', objectFit: 'cover' }} 
+                        />
+                    ) : (
+                        // Otherwise, render the interactive 3D model
+                        <Canvas camera={{ position: [0, 0, 5], fov: 50 }} dpr={[1, 1.5]}>
+                            <Suspense fallback={null}>
+                                <ambientLight intensity={0.5} />
+                                <directionalLight position={[10, 10, 5]} intensity={1.5} />
+                                <directionalLight position={[-10, -10, -5]} intensity={1} />
+                                <Bounds fit clip observe>
+                                    <ModelViewer modelPath="/porsche_911_turbo_s.glb" animation={animation} />
+                                </Bounds>
+                                <OrbitControls makeDefault enabled={false} />
+                                <Environment preset="studio" />
+                            </Suspense>
+                        </Canvas>
+                    )}
                 </div>
                 <PackageCard packages={_ineteriorDetailing.packages} setAnimation={setAnimation}/>
             </div>
