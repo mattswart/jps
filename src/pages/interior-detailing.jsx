@@ -11,26 +11,49 @@ gsap.registerPlugin(ScrollTrigger);
 
 export default function InteriorDetailing() {
     useLayoutEffect(() => {
-        // Pin the Packages Section
-        const targetElement = document.querySelector('.viewer');
+        // Select all the elements we'll need for the animations
         const header = document.querySelector('header');
+        const targetEl = document.querySelector('.viewer');
+        const endEl = document.querySelector('.card-0');
 
-        const st = ScrollTrigger.create({
-            trigger: targetElement,
-            // The start position is the top of the packages section hitting the bottom of the header
-            start: () => `top ${header.offsetHeight}px`,
-            end: "bottom bottom", // Unpin when the bottom of the section hits the bottom of the viewport
-            pin: true,
-            pinSpacing: false,
-            toggleClass: {
-                className: 'pinned',
-                targets: targetElement
-            }
+        // A quick check to make sure all elements are on the page before running GSAP
+        if (!header || !targetEl || !endEl) {
+            return;
+        }
+
+        // Initialize matchMedia for creating responsive animations
+        const mm = gsap.matchMedia();
+
+        // --- DESKTOP ANIMATION (for screens 768px and wider) ---
+        // mm.add("(min-width: 768px)", () => {
+        //     const st = ScrollTrigger.create({
+        //         trigger: targetEl,
+        //         start: () => `top ${header.offsetHeight}px`,
+        //         end: () => `+=${endEl.offsetHeight - targetEl.offsetHeight}`,
+        //         pin: true,
+        //         pinSpacing: false,
+        //         invalidateOnRefresh: true, // Crucial for recalculating on resize
+        //         markers: true,
+        //     });
+        // });
+
+        // --- MOBILE ANIMATION (for screens smaller than 768px) ---
+        mm.add("(max-width: 767px)", () => {
+            const st = ScrollTrigger.create({
+                trigger: targetEl,
+                start: () => `top ${header.offsetHeight}px`,
+                // The calculation is the same, but it will run with mobile-specific element heights
+                end: () => `${endEl.offsetHeight}px`,
+                pin: true,
+                pinSpacing: false,
+                invalidateOnRefresh: true,
+                markers:true,
+            });
         });
 
-        // Kill the ScrollTrigger when the component unmounts
+        // The cleanup function to revert all matchMedia instances on component unmount
         return () => {
-            st.kill();
+            mm.revert();
         };
     }, []);
 
@@ -38,10 +61,10 @@ export default function InteriorDetailing() {
         <main className="bg-black">
             <Hero heading={_ineteriorDetailing.heroHeading} body={_ineteriorDetailing.heroBody} image={_ineteriorDetailing.heroImage} />
             {/* PACKAGES */}
-                <div className="viewer w-full min-h-[300px] bg-orange-500 mb-4">asd </div>
-            <div className="packages-section section w-fit flex flex-col items-end m-auto">
-                <h2 className="pinner uppercase text-white font-extrabold text-4xl pb-2 text-right">Packages</h2>
+            <div className="section packages-section w-fit flex flex-col items-end m-auto">
+                <h2 className="uppercase text-white font-extrabold text-4xl pb-2 text-right">Packages</h2>
                 <p className="disclaimer text-white font-extralight pb-4 text-right">*Extraneous factors such as pet hair, salt stains and odors may effect pricing.</p>
+                <div id="viewer" className="viewer w-full min-h-[300px] bg-orange-500 mb-4">asd </div>
                 <PackageCard packages={_ineteriorDetailing.packages} />
             </div>
             {/* FAQ */}

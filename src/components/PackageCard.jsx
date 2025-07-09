@@ -18,15 +18,16 @@ export default function PackageCard({ packages }){
             { packages.map((tier, index) => (
                 <div 
                     key={index} 
-                    className="
+                    className={`
                         package-card 
+                        card-${index} 
                         bg-white
                         rounded-[1px] 
                         p-3 
                         w-auto 
                         items-start
                         md:basis-1/2 
-                    "
+                    `}
                 >
                     <h3 className="text-2xl uppercase font-black italic">{tier.name}</h3>
                     <ol className="pricing">

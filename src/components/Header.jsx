@@ -1,11 +1,8 @@
 import  { useState } from "react";
-import Image from "next/image"
 import Link from "next/link"
-import Nav from "@/components/Nav"
 import Socials from "@/components/Socials";
 import LogoFill from "@/components/svg/LogoFill";
 import LogoText from "@/components/svg/LogoText";
-import LogoLines from "./svg/LogoLines";
 
 export default function Header ({ socials, pages, _meta }){
   const [isVisible, setIsVisible] = useState(false);
