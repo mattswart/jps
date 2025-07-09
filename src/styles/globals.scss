@@ -5,15 +5,15 @@
 :root {
   // --background: #ffffff;
   // --foreground: #171717;
-  --color-header-nav-background: white;
-  --color-header-nav-text: black;
-  --color-header-logo: black;
-  --color-header-socials: black;
-  --content-max-width: 1200px;
-  --spacing-content-x: ;
-  --spacing-content-y: ;
-  --spacing-layout-x: 16px;
-  --spacing-layout-y: 8px;
+  // --color-header-nav-background: white;
+  // --color-header-nav-text: black;
+  // --color-header-logo: black;
+  // --color-header-socials: black;
+  // --content-max-width: 1200px;
+  // --spacing-content-x: ;
+  // --spacing-content-y: ;
+  // --spacing-layout-x: 16px;
+  // --spacing-layout-y: 8px;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -48,23 +48,22 @@
 .poppins-black-italic { font-family: "Poppins", sans-serif; font-weight: 900; font-style: italic; }
 .poppins-black-extended { font-family: "Poppins", sans-serif; font-weight: 900; font-style: italic; font-stretch: 200%; }
 
-.uppercase { text-transform: uppercase; }
 // RESET
-body {
-  // color: var(--foreground);
-  // background: var(--background);
-  background: black;
-  font-family: "Poppins", sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-* { box-sizing: border-box; padding: 0; margin: 0; }
-html, body { 
-  max-width: 100vw; 
-  // overflow-x: hidden; 
-}
-ul, ol { list-style-type: none; }
-a { color: inherit; text-decoration: none; }
+  body {
+    // color: var(--foreground);
+    // background: var(--background);
+    background: black;
+    font-family: "Poppins", sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  * { box-sizing: border-box; padding: 0; margin: 0; }
+  html, body { 
+    max-width: 100vw; 
+    // overflow-x: hidden; 
+  }
+  ul, ol { list-style-type: none; }
+  a { color: inherit; text-decoration: none; }
 // END RESET
 
 
@@ -84,43 +83,20 @@ a { color: inherit; text-decoration: none; }
   padding: 0;
 }
 header {
-    transition: padding 0.4s ease-in-out;
-
+  // padding-top: 0;
+  // padding-bottom: 0;
+  padding: 6px 0!important;
+  transition: padding 0.4s ease-in-out;
+  transition: background 0.4s ease-in-out;
   &.pinned {
-    // position: fixed;
-    // top: 0;
-    // left: 0;
-    // width: 100%;
-        will-change: transform;
-
+    background: rgba(0, 0, 0, 0.4);
+    will-change: transform;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-    // Set the smaller vertical padding when pinned
-    padding-top: 6px;
-    padding-bottom: 6px;
-    // animation: slideDown 0.3s ease-out;
   }
   &.show nav{}  
 }
 .viewer{
   &.pinned{  will-change: transform;}
-}
-.pinned{}
-@keyframes slideDown {
-  from {
-    transform: translateY(-100%);
-  }
-  to {
-    transform: translateY(0);
-  }
-}
-// ... (your existing scss file)
-
-header {
-  // Remove the old backdrop-filter from the pinned state
-  &.pinned {
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-  }
-  &.show nav{}
 }
 
 // New styles for the animated background
@@ -128,7 +104,7 @@ header {
   position: absolute;
   inset: 0; // Fills the entire parent header
   z-index: -1; // Sits behind the header content
-  border-radius: 10px; // Match the radius from the mobile 'show' state
+  // border-radius: 10px; // Match the radius from the mobile 'show' state
   
   // The blur effect itself
   backdrop-filter: blur(10px);
@@ -179,7 +155,6 @@ header.show .header-background {
     transform: rotate(360deg);
   }
 }
-// ... (rest of your scss file)
 
 .hero h1{
   background: linear-gradient(90deg,rgba(0, 0, 0, 0) 2%, rgba(255, 255, 255, 1) 55%);
@@ -206,71 +181,3 @@ header.show .header-background {
 }
 
 
-
-// BASE STYLING
-h1{ font-weight: 900; font-style: italic; }
-
-.y-spacing {
-  padding-top: var(--spacing-layout-y);
-  padding-bottom: var(--spacing-layout-y);
-
-}
-.x-spacing {
-  padding-left: var(--spacing-layout-x);
-  padding-right: var(--spacing-layout-x);
-  
-}
-// END BASE STYLING
-// -- Socials Component -- //
-.socials{                   
-  display: flex;  
-  flex-direction: row;
-  gap: 12px;
-  a {
-    display: flex;
-    span.label { margin-left: 3px; }
-    img{ 
-      width: 22px;
-      height:auto;
-    }
-  }
-}
-
-// -- BusinessHours -- //
-ol.hours { 
-  display: flex;
-  flex-direction: column;
-  width: fit-content;
-  li{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    gap: 20px;
-  }
-}
-
-
-
-
-
-@media (min-width: 600px){
-  header .layout {
-
-    .socials{
-      display: flex;
-      position: absolute;
-      top: 0;
-      right: 0;
-    }
-  }
-}
-
-@media (min-width: 805px){
-  header .layout {
-    nav {
-      ol {
-        justify-content: space-between;
-      }
-    }
-  }
-}

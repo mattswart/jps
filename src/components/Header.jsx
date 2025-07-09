@@ -9,7 +9,7 @@ export default function Header ({ socials, pages, _meta }){
   const handleClick = () => setIsVisible(!isVisible);
     return (
       <header className={`
-        section
+        section 
         z-50
         absolute
         top-[30px]
@@ -34,7 +34,7 @@ export default function Header ({ socials, pages, _meta }){
           gap-[10px]
           justify-center
           w-full
-          ${ isVisible ? "pb-[30px]" : ""}
+          ${ isVisible ? "" : ""}
           md:w-auto
         `}>
           <Link href="/" className="logo-icon flex">
@@ -116,7 +116,7 @@ export default function Header ({ socials, pages, _meta }){
             </ol>
           </nav>
         )}
-        <Socials socials={socials} hasLabel={false} hasUsername={false} />
+        <Socials className="hidden" socials={socials} hasLabel={false} hasUsername={false} />
       </header>
     )
 }

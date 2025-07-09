@@ -11,7 +11,7 @@ export default function Hero({image, heading, body}){
             </div>
             {/* CONTENT */}
             <div className="pt-[240px]">
-                <h1 className=" hero uppercase text-4xl flex relative bg-white mix-blend-screen justify-center leading-none py-[10px]">
+                <h1 className=" hero font-black italic uppercase text-4xl flex relative bg-white mix-blend-screen justify-center leading-none py-[10px]">
                     <span className="bar"></span>
                     <span className="bar"></span>
                     <span className="bar"></span>

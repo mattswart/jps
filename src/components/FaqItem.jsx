@@ -1,7 +1,4 @@
-import { useState } from 'react';
-
-export default function FaqItem({ question, answer }) {
-  const [isOpen, setIsOpen] = useState(false);
+export default function FaqItem({ question, answer, isOpen, onClick }) {
   return (
     <div className="faq-item">
         <div className="
@@ -18,7 +15,7 @@ export default function FaqItem({ question, answer }) {
                 items-center 
                 text-left
             " 
-             onClick={() => setIsOpen(!isOpen)}
+             onClick={onClick}
         >
             <div className={`absolute flex items-center justify-center transition-all duration-500 ease-in-out  ${isOpen ? "ml-[16px]" : "ml-0"}`}>
                 <span className={`block h-1 bg-black ${isOpen ? 'w-6' : 'w-[32px]'} transition-all duration-500 ease-in-out`}></span>

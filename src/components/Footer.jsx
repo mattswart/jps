@@ -38,13 +38,17 @@ export default function Footer({ socials, pages, meta }) {
                 <a className="font-medium text-lg" href={ "tel:" + meta.phoneNumber.replace(/\D/g,'') }>{meta.phoneNumber}</a>
                 <p className="font-extralight">1428 Speers Rd Unit 12 <br />Oakville, Ontario <br />L6L 5M1</p>
                 {!!meta.hours?.length && (
-                    <ol className="hours leading-[1.23]">
+                    <ol className="leading-[1.23] flex flex-col w-fit">
                         { meta.hours.map(( day, index ) => (
-                            day.isOpen ? (
-                                <li key={index}><span className="font-semibold">{ day.day } </span><span className="font-light">{ day.timeOpen } - { day.timeClose }</span></li>
-                            ) : (
-                                <li key={index} className="closed"><span className="font-semibold">{ day.day } </span><span className="font-light text-[#AFAFAF]">Closed</span></li>
-                            )
+                                <li key={index} className={` ${day.isOpen ? "" : "closed"} flex flex-row justify-between gap-[20px]`}>
+                                    <span className="font-semibold">{ day.day } </span>
+                                    { day.isOpen ? (
+                                        <span className="font-light">{ day.timeOpen } - { day.timeClose }</span>
+                                    ) : (
+                                        <span className="font-light text-[#AFAFAF]">Closed</span>
+                                    )}
+                                </li>
+                            
                         ))}
                     </ol>
                 )}

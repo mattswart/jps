@@ -17,7 +17,6 @@ gsap.registerPlugin(ScrollTrigger);
 const Loader = () => {
     const { progress } = useProgress();
     return (
-      <div className="loader-container">
         <div className="loader-spinner" />
         {/* Display the rounded progress percentage */}
         <span className="loader-text">{Math.round(progress)}% loaded</span>
@@ -29,6 +28,7 @@ const Loader = () => {
 export default function InteriorDetailing() {
     // State to control the currently active animation
     const [animation, setAnimation] = useState('card-0');
+    const [openFaqIndex, setOpenFaqIndex] = useState(null);
 
      const [isWebGLBroken, setIsWebGLBroken] = useState(false);
 
@@ -97,6 +97,10 @@ export default function InteriorDetailing() {
         };
     }, []);
 
+    const handleFaqClick = (index) => {
+        setOpenFaqIndex(openFaqIndex === index ? null : index);
+    };
+
     return (
         <main className="bg-black">
             <Hero heading={_ineteriorDetailing.heroHeading} body={_ineteriorDetailing.heroBody} image={_ineteriorDetailing.heroImage} />
@@ -135,7 +139,15 @@ export default function InteriorDetailing() {
             <div className="section text-white flex flex-col md:flex-row md:gap-6">
                 <h2 className="uppercase text-3xl font-black pb-4 md:basis-1/4">Frequently asked questions</h2>
                 <div className="faq-items flex flex-col gap-2 md:basis-3/4">
-                    {_ineteriorDetailing.faqs.map((faq, index) => <FaqItem key={index} question={faq.q} answer={faq.a} />)}
+                    {_ineteriorDetailing.faqs.map((faq, index) => (
+                        <FaqItem
+                            key={index}
+                            question={faq.q}
+                            answer={faq.a}
+                            isOpen={index === openFaqIndex}
+                            onClick={() => handleFaqClick(index)}
+                        />
+                    ))}
                 </div>
             </div>
             {/* CONTENT SECTION */}
