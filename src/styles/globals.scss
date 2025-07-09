@@ -144,10 +144,13 @@ header.show .header-background {
   opacity: 1;
 }
 
+
 .loader-container {
   width: 100%;
   height: 100%;
   display: flex;
+  // Change to column to stack the text below the spinner
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   background-color: #000; // Match the page background
@@ -159,6 +162,22 @@ header.show .header-background {
   border: 4px solid #333;
   border-top-color: #fff;
   border-radius: 50%;
+  // Add animation for a continuous spin
+  animation: spin 1s linear infinite;
+}
+
+// Style for the progress text
+.loader-text {
+  color: #fff;
+  margin-top: 10px;
+  font-size: 14px;
+}
+
+// Add the keyframe animation for the spinner
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
 }
 // ... (rest of your scss file)
 

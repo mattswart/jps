@@ -1,6 +1,6 @@
 import { useEffect, Suspense, useState, useLayoutEffect as useOriginalLayoutEffect, useRef } from "react"; // Import useEffect
 import { Canvas } from '@react-three/fiber';
-import { OrbitControls, Environment, Bounds } from '@react-three/drei';
+import { OrbitControls, Environment, Bounds, useProgress } from '@react-three/drei';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import Image from "next/image";
@@ -15,26 +15,15 @@ import { _ineteriorDetailing } from "@/components/_data";
 gsap.registerPlugin(ScrollTrigger);
 
 const Loader = () => {
-    const loaderRef = useRef(null);
-  
-    useEffect(() => {
-      // Animate the loader using GSAP
-      if (loaderRef.current) {
-        gsap.to(loaderRef.current, {
-          rotation: 360,
-          duration: 1,
-          ease: 'none',
-          repeat: -1,
-        });
-      }
-    }, []);
-  
+    const { progress } = useProgress();
     return (
       <div className="loader-container">
-        <div ref={loaderRef} className="loader-spinner" />
+        <div className="loader-spinner" />
+        {/* Display the rounded progress percentage */}
+        <span className="loader-text">{Math.round(progress)}% loaded</span>
       </div>
     );
-  };
+};
 
 
 export default function InteriorDetailing() {
@@ -127,7 +116,8 @@ export default function InteriorDetailing() {
                     ) : (
                         // Otherwise, render the interactive 3D model
                         <Suspense fallback={<Loader />}>
-                            <Canvas camera={{ position: [0, 0, 5], fov: 50 }} dpr={[1, 1.5]}>
+                            <Canvas camera={{ position: [0, 0, 5], fov: 50 }} dpr={[1, 1.5]} gl={{ antialias: false }}
+>
                                 <ambientLight intensity={0.5} />
                                 <directionalLight position={[10, 10, 5]} intensity={1.5} />
                                 <directionalLight position={[-10, -10, -5]} intensity={1} />
