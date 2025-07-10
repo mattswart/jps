@@ -2,7 +2,7 @@ import Image from "next/image"
 import Link from "next/link"
 import Socials from "@/components/Socials";
 import Nav from "@/components/Nav"
-import BusinessInfo from "@/components/BusinessInfo";
+// import BusinessInfo from "@/components/BusinessInfo";
 
 export default function Footer({ socials, pages, meta }) {
     return (
