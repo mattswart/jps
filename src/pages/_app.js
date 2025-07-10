@@ -1,7 +1,7 @@
 import Head from "next/head";
 import "@/styles/globals.scss";
 import { Poppins } from "next/font/google";
-import Layout from "@/components/layout";
+import Layout from "@/components/Layout";
 
 const poppins = Poppins({
   variable: "--font-poppins",
