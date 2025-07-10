@@ -1,35 +1,23 @@
 import { useEffect, Suspense, useState } from "react";
 import { Canvas } from '@react-three/fiber';
-import { OrbitControls, Environment, Bounds, useProgress } from '@react-three/drei';
+import { OrbitControls, Environment, Bounds } from '@react-three/drei';
 import Image from "next/image";
 import Hero from "@/components/Hero";
 import PackageCard from "@/components/PackageCard";
 import FaqItem from "@/components/FaqItem";
 import ModelViewer from "@/components/ModelViewer";
 import { _ineteriorDetailing } from "@/components/_data";
-import { usePageScrollAnimation } from "@/hooks/usePageScrollAnimation"; // Import the new hook
-
-const Loader = () => {
-    const { progress } = useProgress();
-    return (
-      <div className="loader-container">
-        <div className="loader-spinner" />
-        <span className="loader-text">{Math.round(progress)}% loaded</span>
-      </div>
-    );
-};
-
+import { usePageScrollAnimation } from "@/hooks/usePageScrollAnimation";
+import Loader from "@/components/Loader"; // <-- Import the new Loader component
 
 export default function InteriorDetailing() {
     const [animation, setAnimation] = useState('card-0');
     const [openFaqIndex, setOpenFaqIndex] = useState(null);
     const [isWebGLBroken, setIsWebGLBroken] = useState(false);
 
-    // ✨ This single line now handles all the scroll animation setup.
     usePageScrollAnimation();
 
     useEffect(() => {
-        // This effect for the WebGL bug detection remains the same
         const canvas = document.createElement('canvas');
         try {
             const gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
@@ -58,13 +46,14 @@ export default function InteriorDetailing() {
                     {isWebGLBroken ? (
                         <Image 
                             src="/porsche_fallback.png"
-                            alt="Interior detailing preview" 
+                            alt="Interior detailing preview"
+                            width="100"
+                            height="100" 
                             style={{ width: '100%', height: '100%', objectFit: 'cover' }} 
                         />
                     ) : (
                         <Suspense fallback={<Loader />}>
-                            <Canvas camera={{ position: [0, 0, 5], fov: 50 }} dpr={[1, 1.5]} gl={{ antialias: false }}
->
+                            <Canvas camera={{ position: [0, 0, 5], fov: 50 }} dpr={[1, 1.5]} gl={{ antialias: false }}>
                                 <ambientLight intensity={0.5} />
                                 <directionalLight position={[10, 10, 5]} intensity={1.5} />
                                 <directionalLight position={[-10, -10, -5]} intensity={1} />
