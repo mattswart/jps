@@ -19,7 +19,7 @@ export default function Footer({ socials, pages, meta }) {
                         { !!page.subPages?.length && (
                             <ol>
                                 { page.subPages.map(( subPage, index) => (
-                                    <li key={ index } className="leading-[1.3] font-bold sm:ml-1.5 text-[#AFAFAF]">
+                                    <li key={ index } className="leading-[1.3] font-semibold sm:ml-1.5 text-[#AFAFAF]">
                                         <Link href={ subPage.url }>{ subPage.name }</Link>
                                     </li>
                                 ))}

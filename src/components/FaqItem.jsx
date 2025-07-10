@@ -19,7 +19,7 @@ export default function FaqItem({ question, answer, isOpen, onClick }) {
         >
             <div className={`absolute flex items-center justify-center transition-all duration-500 ease-in-out  ${isOpen ? "ml-[16px]" : "ml-0"}`}>
                 <span className={`block h-1 bg-black ${isOpen ? 'w-6' : 'w-[32px]'} transition-all duration-500 ease-in-out`}></span>
-                <span className={`block w-1 bg-black ${isOpen ? 'h-6' : 'h-[32px]'} absolute transition-all duration-500 ease-in-out ${isOpen ? 'rotate[0deg]' : 'rotate-[-450deg]'}`}></span>
+                <span className={`block w-1 bg-black ${isOpen ? 'h-6' : 'h-[32px]'} absolute transition-all duration-500 ease-in-out ${isOpen ? 'rotate[0deg]' : 'rotate-[-270deg]'}`}></span>
             </div>
             <h3 className="pl-[48px] uppercase text-l text-black font-bold tracking-wide">
                 {question}

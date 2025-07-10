@@ -139,18 +139,18 @@ export const _ineteriorDetailing = {
 
 export const _meta = {
     businessName: "JP'S Fine Auto Detailing",
-    phoneNumber: "(204)222-2222",
+    phoneNumber: "(416)371-4758",
     logo: "",
     logoAlt: "",
     logoAltText: "",
     hours: [
-        { day: "Monday",    isOpen: false,  timeOpen: "00:00",  timeClose: "00:00" },
-        { day: "Tuesday",   isOpen: true,   timeOpen: "00:00",  timeClose: "00:00" },
-        { day: "Wednesday", isOpen: true,   timeOpen: "00:00",  timeClose: "00:00" },
-        { day: "Thursday",  isOpen: true,   timeOpen: "00:00",  timeClose: "00:00" },
-        { day: "Friday",    isOpen: true,   timeOpen: "00:00",  timeClose: "00:00" },
-        { day: "Saturday",  isOpen: true,   timeOpen: "00:00",  timeClose: "00:00" },
-        { day: "Sunday",    isOpen: true,   timeOpen: "00:00",  timeClose: "00:00" }
+        { day: "Monday",    isOpen: true,  timeOpen:    "9:00AM",  timeClose: "6:00PM" },
+        { day: "Tuesday",   isOpen: true,   timeOpen:   "9:00AM",  timeClose: "6:00PM" },
+        { day: "Wednesday", isOpen: true,   timeOpen:   "9:00AM",  timeClose: "6:00PM" },
+        { day: "Thursday",  isOpen: true,   timeOpen:   "9:00AM",  timeClose: "6:00PM" },
+        { day: "Friday",    isOpen: true,   timeOpen:   "9:00AM",  timeClose: "6:00PM" },
+        { day: "Saturday",  isOpen: false,   timeOpen:  "00:00",  timeClose: "00:00" },
+        { day: "Sunday",    isOpen: false,   timeOpen:  "00:00",  timeClose: "00:00" }
     ]
 };
 

@@ -34,12 +34,26 @@ export default function InteriorDetailing() {
                         }
                     >
                         <Suspense fallback={<Loader />}>
-                            <Canvas camera={{ position: [0, 0, 5], fov: 50 }} dpr={[1, 1.5]} gl={{ antialias: false }}>
-                                <ambientLight intensity={0.5} />
-                                <directionalLight position={[10, 10, 5]} intensity={1.5} />
-                                <directionalLight position={[-10, -10, -5]} intensity={1} />
-                                <Bounds fit clip observe margin={0.8}>
-                                    <ModelViewer modelPath="/porsche_911_turbo_s.glb" animation={animation} />
+                            <Canvas camera={{ position: [0, 0, 5], fov: 45 }} 
+                                dpr={[1, 1.5]} 
+                                gl={{ antialias: true, alpha:false, powerPreference: "high-performance" }}                            >
+                                <ambientLight intensity={0.4} />
+                                <directionalLight position={[5, 5, 5]} intensity={1.2} />
+                                {/* <directionalLight position={[-5, -5, -5]} intensity={0.8} /> */}
+                                <Bounds 
+                                    fit 
+                                    clip 
+                                    observe 
+                                    margin={0.8}
+                                    damping={6}
+                                    makeDefault
+                                >
+                                    <ModelViewer 
+                                        modelPath={_ineteriorDetailing.modelUrl} 
+                                        animation={animation} 
+                                        scale={[1.2, 1.2, 1.2]}
+                                        position={[0, -0.5, 0]}
+                                    />
                                 </Bounds>
                                 <Environment preset="studio" />
                             </Canvas>
