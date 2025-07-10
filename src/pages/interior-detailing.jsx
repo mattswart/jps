@@ -1,24 +1,19 @@
-import { useEffect, Suspense, useState, useLayoutEffect as useOriginalLayoutEffect, useRef } from "react"; // Import useEffect
+import { useEffect, Suspense, useState } from "react";
 import { Canvas } from '@react-three/fiber';
 import { OrbitControls, Environment, Bounds, useProgress } from '@react-three/drei';
-import { gsap } from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import Image from "next/image";
 import Hero from "@/components/Hero";
 import PackageCard from "@/components/PackageCard";
 import FaqItem from "@/components/FaqItem";
 import ModelViewer from "@/components/ModelViewer";
 import { _ineteriorDetailing } from "@/components/_data";
-
-
-
-gsap.registerPlugin(ScrollTrigger);
+import { usePageScrollAnimation } from "@/hooks/usePageScrollAnimation"; // Import the new hook
 
 const Loader = () => {
     const { progress } = useProgress();
     return (
+      <div className="loader-container">
         <div className="loader-spinner" />
-        {/* Display the rounded progress percentage */}
         <span className="loader-text">{Math.round(progress)}% loaded</span>
       </div>
     );
@@ -26,11 +21,12 @@ const Loader = () => {
 
 
 export default function InteriorDetailing() {
-    // State to control the currently active animation
     const [animation, setAnimation] = useState('card-0');
     const [openFaqIndex, setOpenFaqIndex] = useState(null);
+    const [isWebGLBroken, setIsWebGLBroken] = useState(false);
 
-     const [isWebGLBroken, setIsWebGLBroken] = useState(false);
+    // ✨ This single line now handles all the scroll animation setup.
+    usePageScrollAnimation();
 
     useEffect(() => {
         // This effect for the WebGL bug detection remains the same
@@ -46,57 +42,7 @@ export default function InteriorDetailing() {
             setIsWebGLBroken(true);
         }
     }, []);
-
-    useEffect(() => {
-        // Select all the elements we'll need for the animations
-        const header = document.querySelector('header');
-        const targetEl = document.querySelector('.viewer');
-        const endEl = document.querySelector('.card-0');
-
-        // A quick check to make sure all elements are on the page before running GSAP
-        if (!header || !targetEl || !endEl) {
-            return;
-        }
-
-        // Initialize matchMedia for creating responsive animations
-        const mm = gsap.matchMedia();
-
-        // --- DESKTOP ANIMATION (for screens 768px and wider) ---
-        // mm.add("(min-width: 768px)", () => {
-        //     const st = ScrollTrigger.create({
-        //         trigger: targetEl,
-        //         start: () => `top ${header.offsetHeight}px`,
-        //         end: () => `+=${endEl.offsetHeight - targetEl.offsetHeight}`,
-        //         pin: true,
-        //         pinSpacing: false,
-        //         invalidateOnRefresh: true, // Crucial for recalculating on resize
-        //         markers: true,
-        //     });
-        // });
-
-        // --- MOBILE ANIMATION (for screens smaller than 768px) ---
-        mm.add("(max-width: 767px)", () => {
-            const st = ScrollTrigger.create({
-                trigger: targetEl,
-                start: () => `top ${header.offsetHeight}px`,
-                // The calculation is the same, but it will run with mobile-specific element heights
-                end: () => `+=${endEl.getBoundingClientRect().bottom - targetEl.getBoundingClientRect().bottom}`,
-                pin: true,
-                pinSpacing: false,
-                invalidateOnRefresh: true,
-                toggleClass: {
-                    className: 'pinned',
-                    targets: targetEl
-                }
-            });
-        });
-
-        // The cleanup function to revert all matchMedia instances on component unmount
-        return () => {
-            mm.revert();
-        };
-    }, []);
-
+    
     const handleFaqClick = (index) => {
         setOpenFaqIndex(openFaqIndex === index ? null : index);
     };
@@ -110,15 +56,12 @@ export default function InteriorDetailing() {
                 <p className="disclaimer text-white font-extralight pb-4 text-right">*Extraneous factors such as pet hair, salt stains and odors may effect pricing.</p>
                 <div id="viewer" className="viewer w-full aspect-video max-h-[200px] md:max-h-[300px] bg-orange-500 mb-4">
                     {isWebGLBroken ? (
-                        // If the bug is detected, show this fallback image.
-                        // You can replace the src with a high-quality render of your car.
                         <Image 
-                            src="/porsche_fallback.png" // Replace with your fallback image path
+                            src="/porsche_fallback.png"
                             alt="Interior detailing preview" 
                             style={{ width: '100%', height: '100%', objectFit: 'cover' }} 
                         />
                     ) : (
-                        // Otherwise, render the interactive 3D model
                         <Suspense fallback={<Loader />}>
                             <Canvas camera={{ position: [0, 0, 5], fov: 50 }} dpr={[1, 1.5]} gl={{ antialias: false }}
 >
