@@ -2,29 +2,24 @@ import { Suspense, useState } from "react";
 import { Canvas } from '@react-three/fiber';
 import { Environment, Bounds } from '@react-three/drei';
 import Image from "next/image";
+import { usePageScrollAnimation } from "@/hooks/usePageScrollAnimation";
 import Hero from "@/components/Hero";
 import PackageCard from "@/components/PackageCard";
-import FaqItem from "@/components/FaqItem";
 import ModelViewer from "@/components/ModelViewer";
-import { _ineteriorDetailing } from "@/components/_data";
-import { usePageScrollAnimation } from "@/hooks/usePageScrollAnimation";
 import Loader from "@/components/Loader";
-import WebGLChecker from "@/components/WebGLChecker"; // <-- Import the new component
+import WebGLChecker from "@/components/WebGLChecker";
+import Faq from "@/components/Faq"; // <-- Import the new component
+import { _ineteriorDetailing } from "@/components/_data";
 
 export default function InteriorDetailing() {
     const [animation, setAnimation] = useState('card-0');
-    const [openFaqIndex, setOpenFaqIndex] = useState(null);
-
-    usePageScrollAnimation();
     
-    const handleFaqClick = (index) => {
-        setOpenFaqIndex(openFaqIndex === index ? null : index);
-    };
+    usePageScrollAnimation();
 
     return (
         <main className="bg-black">
             <Hero heading={_ineteriorDetailing.heroHeading} body={_ineteriorDetailing.heroBody} image={_ineteriorDetailing.heroImage} />
-            {/* PACKAGES */}
+            
             <div className="section packages-section w-full flex flex-col items-end m-auto">
                 <h2 className="uppercase text-white font-extrabold text-4xl pb-2 text-right">Packages</h2>
                 <p className="disclaimer text-white font-extralight pb-4 text-right">*Extraneous factors such as pet hair, salt stains and odors may effect pricing.</p>
@@ -34,8 +29,6 @@ export default function InteriorDetailing() {
                             <Image 
                                 src="/porsche_fallback.png"
                                 alt="Interior detailing preview" 
-                                width="100"
-                                height="100"
                                 style={{ width: '100%', height: '100%', objectFit: 'cover' }} 
                             />
                         }
@@ -55,22 +48,9 @@ export default function InteriorDetailing() {
                 </div>
                 <PackageCard packages={_ineteriorDetailing.packages} setAnimation={setAnimation}/>
             </div>
-            {/* FAQ */}
-            <div className="section text-white flex flex-col md:flex-row md:gap-6">
-                <h2 className="uppercase text-3xl font-black pb-4 md:basis-1/4">Frequently asked questions</h2>
-                <div className="faq-items flex flex-col gap-2 md:basis-3/4">
-                    {_ineteriorDetailing.faqs.map((faq, index) => (
-                        <FaqItem
-                            key={index}
-                            question={faq.q}
-                            answer={faq.a}
-                            isOpen={index === openFaqIndex}
-                            onClick={() => handleFaqClick(index)}
-                        />
-                    ))}
-                </div>
-            </div>
-            {/* CONTENT SECTION */}
+            
+            <Faq heading="Frequently asked questions" faqs={_ineteriorDetailing.faqs} />
+
             <div className="section flex flex-col sm:flex-row sm:gap-10">
                 <div className="order-last bg-white width-fill h-[100px] sm:basis-1/3 sm:h-auto sm:order-first md:basis-2/5"> </div>
                 <div className="sm:basis-2/3 md:basis-3/5">
