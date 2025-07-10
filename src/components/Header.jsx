@@ -32,6 +32,26 @@ export default function Header({ socials, pages, _meta }) {
     return () => st.kill();
   }, []);
 
+  // Prevent body scroll when mobile menu is open
+  useEffect(() => {
+    if (isVisible) {
+      // Method 1: Simple overflow hidden (try this first)
+      document.body.style.overflow = 'hidden';
+      document.body.style.touchAction = 'none'; // Prevents touch scrolling on mobile
+      
+    } else {
+      // Restore scrolling
+      document.body.style.overflow = '';
+      document.body.style.touchAction = '';
+    }
+
+    // Cleanup on unmount
+    return () => {
+      document.body.style.overflow = '';
+      document.body.style.touchAction = '';
+    };
+  }, [isVisible]);
+
   return (
     <header 
       ref={headerRef}
