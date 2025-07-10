@@ -1,6 +1,6 @@
-import { useEffect, Suspense, useState } from "react";
+import { Suspense, useState } from "react";
 import { Canvas } from '@react-three/fiber';
-import { OrbitControls, Environment, Bounds } from '@react-three/drei';
+import { Environment, Bounds } from '@react-three/drei';
 import Image from "next/image";
 import Hero from "@/components/Hero";
 import PackageCard from "@/components/PackageCard";
@@ -8,28 +8,14 @@ import FaqItem from "@/components/FaqItem";
 import ModelViewer from "@/components/ModelViewer";
 import { _ineteriorDetailing } from "@/components/_data";
 import { usePageScrollAnimation } from "@/hooks/usePageScrollAnimation";
-import Loader from "@/components/Loader"; // <-- Import the new Loader component
+import Loader from "@/components/Loader";
+import WebGLChecker from "@/components/WebGLChecker"; // <-- Import the new component
 
 export default function InteriorDetailing() {
     const [animation, setAnimation] = useState('card-0');
     const [openFaqIndex, setOpenFaqIndex] = useState(null);
-    const [isWebGLBroken, setIsWebGLBroken] = useState(false);
 
     usePageScrollAnimation();
-
-    useEffect(() => {
-        const canvas = document.createElement('canvas');
-        try {
-            const gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
-            if (gl && gl.getShaderPrecisionFormat(gl.VERTEX_SHADER, gl.HIGH_FLOAT).precision === 0) {
-                console.log('Safari WebGL bug detected, falling back to an image.');
-                setIsWebGLBroken(true);
-            }
-        } catch (e) {
-            console.log('WebGL is not supported or context creation failed, falling back to an image.');
-            setIsWebGLBroken(true);
-        }
-    }, []);
     
     const handleFaqClick = (index) => {
         setOpenFaqIndex(openFaqIndex === index ? null : index);
@@ -43,15 +29,17 @@ export default function InteriorDetailing() {
                 <h2 className="uppercase text-white font-extrabold text-4xl pb-2 text-right">Packages</h2>
                 <p className="disclaimer text-white font-extralight pb-4 text-right">*Extraneous factors such as pet hair, salt stains and odors may effect pricing.</p>
                 <div id="viewer" className="viewer w-full aspect-video max-h-[200px] md:max-h-[300px] bg-orange-500 mb-4">
-                    {isWebGLBroken ? (
-                        <Image 
-                            src="/porsche_fallback.png"
-                            alt="Interior detailing preview"
-                            width="100"
-                            height="100" 
-                            style={{ width: '100%', height: '100%', objectFit: 'cover' }} 
-                        />
-                    ) : (
+                    <WebGLChecker 
+                        fallback={
+                            <Image 
+                                src="/porsche_fallback.png"
+                                alt="Interior detailing preview" 
+                                width="100"
+                                height="100"
+                                style={{ width: '100%', height: '100%', objectFit: 'cover' }} 
+                            />
+                        }
+                    >
                         <Suspense fallback={<Loader />}>
                             <Canvas camera={{ position: [0, 0, 5], fov: 50 }} dpr={[1, 1.5]} gl={{ antialias: false }}>
                                 <ambientLight intensity={0.5} />
@@ -63,7 +51,7 @@ export default function InteriorDetailing() {
                                 <Environment preset="studio" />
                             </Canvas>
                         </Suspense>
-                    )}
+                    </WebGLChecker>
                 </div>
                 <PackageCard packages={_ineteriorDetailing.packages} setAnimation={setAnimation}/>
             </div>
