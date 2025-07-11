@@ -66,7 +66,7 @@ export default function Header({ socials, pages, _meta }) {
         min-w-[100%]
         border-black
 
-        ${ isVisible ? "show m-[6%] border-[12px] rounded-[10px] h-max py-[18px] top-[0px]" : "border-[0px] rounded-[0px] p-[0px]" }
+        ${ isVisible ? "show m-[6%] rounded-[10px] h-max py-[18px] top-[0px]" : "border-[0px] rounded-[0px] p-[0px]" }
         md:pt-0
         md:flex
         md:flex-col
@@ -91,7 +91,15 @@ export default function Header({ socials, pages, _meta }) {
           <LogoText className="h-auto w-[30vw] max-w-[120px] hover:fill-black transition-all duration-200 ease-in-out" fill="white"/>
         </Link>
       </div>
-      <button className="menu-toggle absolute top-0 right-[12px] z-50 md:hidden" title="Open main menu" onClick={handleClick} >| | |</button>
+      <button 
+        className={`menu-toggle absolute top-[12px] right-[12px] z-50 w-[30px] h-[30px] flex flex-col justify-center items-center gap-[8px] md:hidden ${isVisible ? 'active' : ''}`}
+        title={isVisible ? "Close menu" : "Open menu"} 
+        onClick={handleClick}
+      >
+        <span className="menu-line block w-[30px] h-[2px] bg-white origin-center"></span>
+        <span className="menu-line block w-[30px] h-[2px] bg-white origin-center"></span>
+        <span className="menu-line block w-[30px] h-[2px] bg-white origin-center"></span>
+      </button>
 
       {!!pages?.length && (
         <nav className={`

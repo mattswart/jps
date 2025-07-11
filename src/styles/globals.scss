@@ -98,6 +98,30 @@ header {
     }
   }
   &.show nav{}  
+
+  /* Animated hamburger menu button */
+  .menu-toggle .menu-line {
+    transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    transform-origin: center;
+  }
+
+  .menu-toggle.active .menu-line:nth-child(1) {
+    transform: rotate(225deg) translateY(-7px) translateX(-7px);
+  }
+
+  .menu-toggle.active .menu-line:nth-child(2) {
+    opacity: 0;
+    transform: scaleX(0);
+  }
+
+  .menu-toggle.active .menu-line:nth-child(3) {
+    transform: rotate(-225deg) translateY(7px) translateX(-7px);
+  }
+
+  /* Optional: Add hover effect */
+  .menu-toggle:hover .menu-line {
+    background-color: #e5e5e5;
+  }
 }
 .viewer{
   &.pinned{  will-change: transform;}
