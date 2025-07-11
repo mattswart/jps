@@ -85,6 +85,7 @@ header {
   // padding-top: 0;
   // padding-bottom: 0;
   // padding: 6px 0!important;
+  will-change: transform;
   transition: padding 0.4s ease-in-out;
   transition: background 0.4s ease-in-out;
   &.pinned {

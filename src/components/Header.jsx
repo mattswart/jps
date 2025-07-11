@@ -14,23 +14,23 @@ export default function Header({ socials, pages, _meta }) {
   
   const handleClick = () => setIsVisible(!isVisible);
 
-  // useEffect(() => {
-  //   if (!headerRef.current) return;
+  useEffect(() => {
+    if (!headerRef.current) return;
     
-  //   const st = ScrollTrigger.create({
-  //     trigger: headerRef.current,
-  //     start: "top top",
-  //     end: "max",
-  //     pin: true,
-  //     pinSpacing: false,
-  //     toggleClass: {
-  //       className: 'pinned',
-  //       targets: headerRef.current
-  //     }
-  //   });
+    const st = ScrollTrigger.create({
+      trigger: headerRef.current,
+      start: "top top",
+      end: "max",
+      pin: true,
+      pinSpacing: false,
+      toggleClass: {
+        className: 'pinned',
+        targets: headerRef.current
+      }
+    });
 
-  //   return () => st.kill();
-  // }, []);
+    return () => st.kill();
+  }, []);
 
   // // Prevent body scroll when mobile menu is open
   useEffect(() => {
