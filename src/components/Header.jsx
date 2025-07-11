@@ -20,7 +20,8 @@ export default function Header({ socials, pages, _meta }) {
     const st = ScrollTrigger.create({
       trigger: headerRef.current,
       start: "top top",
-      end: "max",
+      endTrigger: 'html',
+      end: "bottom top",
       pin: true,
       pinSpacing: false,
       toggleClass: {
@@ -63,11 +64,8 @@ export default function Header({ socials, pages, _meta }) {
         right-0 
         m-auto 
         w-full  
-
-        ${ isVisible ? "show m-[6%] h-max py-[18px] top-[0px]" : "border-[0px] rounded-[0px] p-[0px]" }
-        // md:pt-0
-        `}>
-    {/* This new element will handle the animated blur */}
+        ${ isVisible ? "show" : "" }
+    `}>
     <div className="header-background "></div>
     <div className="
       wrapper 
@@ -76,17 +74,15 @@ export default function Header({ socials, pages, _meta }) {
       md:flex 
       md:flex-col 
       md:gap-[12px] 
-    " >
-
+    ">
       <div className={`logos
         items-center
         flex
         gap-[10px]
         justify-center
         w-full
-        ${ isVisible ? "" : ""}
         md:w-auto
-        `}>
+      `}>
         <Link href="/" className="logo-icon flex">
           < LogoFill className="h-auto w-[30vw] max-w-[120px] hover:fill-black transition-all duration-200 ease-in-out" fill="white" />
         </Link>
@@ -95,13 +91,27 @@ export default function Header({ socials, pages, _meta }) {
         </Link>
       </div>
       <button 
-        className={`menu-toggle absolute top-[0px] right-[0px] z-50 w-[30px] h-[30px] flex flex-col justify-center items-center gap-[8px] md:hidden ${isVisible ? 'active' : ''}`}
+        className={`
+          absolute 
+          top-[0px] 
+          right-[0px] 
+          z-50 
+          w-[30px] 
+          h-[30px] 
+          flex 
+          flex-col 
+          justify-center 
+          items-center 
+          gap-[8px] 
+          md:hidden 
+          ${isVisible ? 'active' : ''}
+        `}
         title={isVisible ? "Close menu" : "Open menu"} 
         onClick={handleClick}
-        >
-        <span className="menu-line block w-[30px] h-[2px] bg-white origin-center"></span>
-        <span className="menu-line block w-[30px] h-[2px] bg-white origin-center"></span>
-        <span className="menu-line block w-[30px] h-[2px] bg-white origin-center"></span>
+      >
+        <span className="block w-[30px] h-[2px] bg-white origin-center"></span>
+        <span className="block w-[30px] h-[2px] bg-white origin-center"></span>
+        <span className="block w-[30px] h-[2px] bg-white origin-center"></span>
       </button>
 
       {!!pages?.length && (
@@ -144,23 +154,23 @@ export default function Header({ socials, pages, _meta }) {
                     )}
                     { !!page.subPages?.length && (
                       <ol className="
-                      ml-[8px]
-                      md:flex
-                      md:overflow-hidden
-                      md:h-0
-                      md:items-center
-                      md:group-hover:h-[30px]
-                      md:transition-all
-                      md:duration-200
-                      md:absolute
-                      md:bg-white
-                      md:w-full
-                      md:px-[6px]
-                      md:gap-[6px]
-                      md:left-0
-                      md:right-0
-                      md:m-auto
-                      md:justify-between
+                        ml-[8px] 
+                        md:flex 
+                        md:overflow-hidden 
+                        md:h-0 
+                        md:items-center 
+                        md:group-hover:h-[30px] 
+                        md:transition-all 
+                        md:duration-200 
+                        md:absolute 
+                        md:bg-white 
+                        md:w-full 
+                        md:px-[6px] 
+                        md:gap-[6px] 
+                        md:left-0 
+                        md:right-0 
+                        md:m-auto 
+                        md:justify-between 
                       ">
                             { page.subPages.map(( subPage, index) => (
                               <li key={ index } className="">
