@@ -194,3 +194,32 @@ header {
 }
 
 
+.package-cards{
+  .package-card{
+    h3{
+      display: flex;
+      flex-flow: row wrap;
+      line-height: 1;
+      span.line{ 
+        height: 3px; 
+        background: black; 
+        display: block; 
+        margin-right: -13px;
+        transform: skew(-9deg);
+      }
+      span:nth-child(1){ flex: 0 1 auto}
+      span:nth-child(2){
+        width: calc(100% + 14px);
+        order: 2;
+        margin-top: 12px;
+      }
+      span:nth-child(3){
+        width: calc( 100% + 2px);
+        flex: 1;
+        align-self: end;
+        margin-left: 12px;
+        order: 1;
+      }
+    }
+  }
+}

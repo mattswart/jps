@@ -8,8 +8,8 @@ export default function PackageCard({ packages, setAnimation }){
                 border-white
                 border-[12px]
                 rounded-[1px]
-                gap-3
-                p-3
+                gap-[12px]
+                p-[12px]
                 m-auto
                 w-fit
                 md:flex-row
@@ -23,7 +23,7 @@ export default function PackageCard({ packages, setAnimation }){
                         card-${index}
                         bg-white
                         rounded-[1px]
-                        p-3
+                        p-[12px]
                         w-auto
                         items-start
                         md:basis-1/2
@@ -32,8 +32,19 @@ export default function PackageCard({ packages, setAnimation }){
                     // 2. Set the animation on hover. It will now persist.
                     onMouseEnter={() => setAnimation(`card-${index}`)}
                 >
-                    <h3 className="text-2xl uppercase font-black italic">{tier.name}</h3>
-                    <ol className="pricing">
+                    <h3 className="pb-[12px] text-2xl uppercase font-black italic">
+                        <span>{tier.name}</span>
+                        {(() => { 
+                            const arr = [];
+                            for(let i = 0; i < ( index + 1); i++){
+                                arr.push(
+                                    <span className="line"> </span>
+                                )
+                            }
+                            return arr;
+                        })()}
+                    </h3>
+                    <ol className="pricing pb-[6px]">
                         { tier.prices.map(( price, index ) => (
                             <li key={index}><strong>{price.type}</strong> from <strong>{price.amount}</strong></li>
                         ))}
