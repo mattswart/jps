@@ -214,3 +214,21 @@ export const _pagesFooter = [
     { name: "Contact", url: "/contact" },
 
 ];
+
+export const _galleryGridImages =[
+    { id: 1 , url: "/grid1.jpg" ,   altText: "imurggg", carMake: "Fiat", carModel: "Lemon", service: "Window Tinting"},
+    { id: 2 , url: "/grid2.jpg" ,   altText: "imurggg", carMake: "Fiat", carModel: "Lemon", service: "PPF"},
+    { id: 3 , url: "/grid3.jpg" ,   altText: "imurggg", carMake: "Fiat", carModel: "Lemon", service: "Ceramic Coating"},
+    { id: 4 , url: "/grid4.jpg" ,   altText: "imurggg", carMake: "Fiat", carModel: "Lemon", service: "Interior Detailing"},
+    { id: 5 , url: "/grid5.jpg" ,   altText: "imurggg", carMake: "Fiat", carModel: "Lemon", service: "Interior Detailing"},
+    { id: 6 , url: "/grid6.jpg" ,   altText: "imurggg", carMake: "Fiat", carModel: "Lemon", service: "Ceramic Coating"},
+    { id: 7 , url: "/grid7.jpg" ,   altText: "imurggg", carMake: "Fiat", carModel: "Lemon", service: "Window Tinting"},
+    { id: 8 , url: "/grid8.jpg" ,   altText: "imurggg", carMake: "Fiat", carModel: "Lemon", service: "Paint Correction"},
+    { id: 9 , url: "/grid9.jpg" ,   altText: "imurggg", carMake: "Fiat", carModel: "Lemon", service: "PPF"},
+    { id: 10 , url: "/grid10.jpg" ,  altText: "imurggg", carMake: "Fiat", carModel: "Lemon", service: "Interior Detailing"},
+    { id: 11 , url: "/grid11.jpg" ,  altText: "imurggg", carMake: "Fiat", carModel: "Lemon", service: "Window Tinting"},
+    { id: 12 , url: "/grid12.jpg" ,  altText: "imurggg", carMake: "Fiat", carModel: "Lemon", service: "Exterior Detailing"},
+    { id: 13 , url: "/grid13.jpg" ,  altText: "imurggg", carMake: "Fiat", carModel: "Lemon", service: "Ceramic Coating"},
+    { id: 14 , url: "/grid14.jpg" ,  altText: "imurggg", carMake: "Fiat", carModel: "Lemon", service: "Ceramic Coating"},
+    { id: 15 , url: "/grid15.jpg" ,  altText: "imurggg", carMake: "Fiat", carModel: "Lemon", service: "PPF"}
+]
