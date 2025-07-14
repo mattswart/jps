@@ -32,7 +32,7 @@ export default function InteriorDetailing() {
                     *Extraneous factors such as pet hair, salt stains and odors may effect pricing.
                 </p>
                 
-                <div id="viewer" className="viewer w-full aspect-video max-h-[200px] md:max-h-[300px] bg-orange-500 mb-4">
+                <div id="viewer" className="z-50 viewer w-full aspect-video max-h-[200px] md:max-h-[300px] bg-orange-500 mb-4">
                     <WebGLChecker 
                         fallback={
                             <Image 

@@ -1,9 +1,10 @@
 'use client'
 
 import { _galleryGridImages } from '@/components/_data';
+import Image from 'next/image';
 
 export default function Masonry({ images = [] }) {
-    const columnCount = 3;
+    const columnCount = 7;
     
     // Define column layout types
     const columnLayouts = [
@@ -77,18 +78,25 @@ export default function Masonry({ images = [] }) {
   
   
     return (
-        <div className="gallery-grid mt-[300px]">
+        <div className="mx-[8px] gallery-grid h-[600px] flex gap-[8px]">
             {distributeImages(images).map((column, index) => (
-                <div key={index} className="column">
+                <div key={index} className="column flex flex-col flex-[1] gap-[8px] h-full">
                     {column.map((item, index) => (
                         <div
                             key={index}
-                            className={`grid-item ${item.heightClass}`}
-                            style={{ backgroundImage: `url(${item.url})`}}
+                            className={`grid-item ${item.heightClass} relative`}
                         >
-                            <div>
-                                <span><strong>{item.carMake}</strong> {item.carModel}</span>
-                                <span>{item.service}</span>
+                            <Image 
+                                className='h-full w-full object-cover'
+                                src={item.url} 
+                                width={100} 
+                                height={100} 
+                                alt={item.altText} 
+                            />
+                            <div className='background-overlay absolute h-full w-full top-0 left-0'/>
+                            <div className='taglines absolute bottom-0 left-0 flex flex-col'>
+                                <span className='text-xl pl-[6px] text-white'><strong>{item.carMake}</strong> {item.carModel}</span>
+                                <span className='w-fit bg-white text black p-[6px] rounded-tr-[5px]'>{item.service}</span>
                             </div>
                         </div>
                     ))}

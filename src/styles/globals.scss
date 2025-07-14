@@ -225,24 +225,23 @@ header {
 }
 
 .gallery-grid{
-  height: 600px;
-  // margin: 0 auto;
-  display: flex;
-  gap: 8px;
-  overflow: hidden;
   .column {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-    height: 100%;
+    &:nth-child(3),
+    &:nth-child(4),
+    &:nth-child(5),
+    &:nth-child(6),
+    &:nth-child(7){display: none;}
+    @media(min-width: 640px){ &:nth-child(3){display:flex} }
+    @media(min-width: 768px){ &:nth-child(4){display: flex} }
+    @media(min-width: 1024px){ &:nth-child(5){display: flex;} }
+    @media(min-width: 1280px){ &:nth-child(6){display: flex;} }
+    @media(min-width: 1536px){ &:nth-child(7){display: flex;}}
     .grid-item {
       background-color: #333;
-      background-size: cover;
-      background-position: center;
-      background-repeat: no-repeat;
-      border-radius: 8px;
+      border-radius: 3px;
+      border: 6px solid white;
       transition: transform 0.3s ease, box-shadow 0.3s ease;
+      overflow: hidden;
       cursor: pointer;
       flex-shrink: 0;
       &:hover {
@@ -254,6 +253,9 @@ header {
       &.h50   { height: calc(50% - 4px); }
       &.h75   { height: calc(75% - 2px); }
       &.h100  { height: calc(100% - 0px); }
+      .background-overlay{ 
+        background: linear-gradient(180deg,rgba(0, 0, 0, 0) 40%, rgb(0, 0, 0) 100%);
+      }
     }
   }
 }

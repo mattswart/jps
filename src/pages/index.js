@@ -31,7 +31,8 @@ export default function Home() {
 
       </Head>
       <main className="">
-          <div className="section full">
+          <div className="section full  pt-[300px]">
+            <h2 className="uppercase text-white font-extrabold text-4xl pb-2 text-center">Our Work</h2>
             <Masonry images={_galleryGridImages}/>
           </div>
       </main>
