@@ -6,7 +6,7 @@ export default function GalleryGrid({images}){
     return(
         <div className="gallery-grid mt-[300px]">
             {images.map((image, index) => (
-                <div style={{backgroundImage:"url(" +image.url + ")"}}>
+                <div key={index} style={{backgroundImage:"url(" +image.url + ")"}}>
                     <Image 
                         src={image.url} 
                         alt={image.altText} 
